@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cohort 1 — Daily Workplan</title>
+<!-- Screenshot library (used only by the Export button). If your network blocks CDNs, this can be bundled inline instead. -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+<style>
+  body{
+    --ink:#1e293b; --ink-soft:#64748b; --line:#e9edf3;
+    margin:0; min-height:100vh; color:var(--ink); overflow-x:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(178deg,#1a1b4b 0%,#3b2a63 34%,#7c3f6d 60%,#c86b6b 82%,#f0a97a 100%);
+    background-size:220% 220%;
+    background-attachment:fixed;
+    animation:wp-dawn 22s ease-in-out infinite;
+  }
+  @keyframes wp-dawn{0%{background-position:0% 0%}50%{background-position:100% 100%}100%{background-position:0% 0%}}
+  *{box-sizing:border-box}
+  .wp-ic{display:inline-flex;line-height:0}
+  .wp-bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+  .wp-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.4}
+  .wp-blob.b1{width:460px;height:460px;background:#3d3a8c;top:-150px;left:-100px}
+  .wp-blob.b2{width:420px;height:420px;background:#e08a6a;top:220px;right:-140px}
+  .wp-blob.b3{width:380px;height:380px;background:#7d4a78;bottom:-140px;left:32%}
+  /* twilight starfield (live only — hidden in capture mode) */
+  .wp-stars{position:absolute;inset:0;overflow:hidden;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 45%,rgba(0,0,0,.35) 72%,transparent 90%);
+    mask-image:linear-gradient(to bottom,#000 0%,#000 45%,rgba(0,0,0,.35) 72%,transparent 90%)}
+  .wp-star{position:absolute;animation:wp-drift var(--dr,90s) linear var(--dd,0s) infinite}
+  .wp-star-dot{width:100%;height:100%;border-radius:50%;background:#fff;
+    box-shadow:0 0 6px 1px rgba(255,255,255,.5);
+    animation:wp-twinkle var(--tw,4s) ease-in-out var(--td,0s) infinite}
+  @keyframes wp-twinkle{0%,100%{opacity:var(--o1,.25);transform:scale(.85)}50%{opacity:var(--o2,.95);transform:scale(1.15)}}
+  @keyframes wp-drift{from{transform:translateY(-14px)}to{transform:translateY(14px)}}
+  .wp-container{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:28px 20px 60px}
+
+  /* header */
+  .wp-header{position:relative;overflow:hidden;color:#fff;border-radius:26px;padding:30px 34px;
+    background:linear-gradient(120deg,#4f46e5 0%,#2563eb 40%,#06b6d4 78%,#14b8a6 112%);
+    box-shadow:0 22px 55px -18px rgba(37,99,235,.55)}
+  .wp-shine{position:absolute;top:0;left:-60%;width:60%;height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);animation:wp-shine 6.5s ease-in-out infinite}
+  @keyframes wp-shine{0%{left:-60%}55%{left:130%}100%{left:130%}}
+  .wp-head-main{max-width:760px}
+  .wp-eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+  .wp-editable{display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:0;text-align:left;cursor:pointer;color:#fff;font-family:inherit;border-radius:8px}
+  .wp-editable .wp-pen{opacity:0;flex-shrink:0;transition:opacity .2s}
+  .wp-editable:hover .wp-pen{opacity:.9}
+  .wp-editable-input{font-family:inherit;color:#fff;background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.55);border-radius:10px;padding:5px 11px;outline:none}
+  .wp-sz-date{font-size:15px;font-weight:600;opacity:.92;margin-top:4px}
+  .wp-sz-greet{font-size:26px;font-weight:800;line-height:1.25;letter-spacing:-.01em;margin-top:12px}
+  .wp-sz-sub{font-size:15px;font-weight:600;opacity:.95;margin-top:14px}
+  input.wp-sz-date{width:auto;min-width:250px}
+  input.wp-sz-greet,input.wp-sz-sub{width:100%;max-width:620px}
+
+  /* date pickers (day + month scrollers, manual year) */
+  .wp-datewrap{margin-top:6px}
+  .wp-datepick{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .wp-date-select,.wp-year-input{font-family:inherit;font-size:15px;font-weight:700;color:#fff;
+    background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.5);border-radius:10px;padding:5px 10px;outline:none}
+  .wp-date-select{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:28px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 9px center}
+  .wp-date-select option{color:#1e293b;background:#fff;font-weight:600}
+  .wp-year-input{width:78px;cursor:text}
+  .wp-date-print{display:none;font-size:15px;font-weight:600;opacity:.95;color:#fff}
+  body.wp-capture .wp-datepick{display:none}
+  body.wp-capture .wp-date-print{display:inline-block}
+
+  /* team strip */
+  .wp-team-strip{display:flex;flex-wrap:wrap;gap:14px;margin:22px 0 6px}
+  .wp-strip-block{flex:1;min-width:240px;background:rgba(255,255,255,.72);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:18px;padding:14px 16px;box-shadow:0 8px 24px -16px rgba(15,23,42,.25);transition:box-shadow .15s,background .15s}
+  .wp-training{flex:0 1 260px}
+  .wp-strip-label{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+  .wp-hint{margin-left:auto;font-size:10.5px;font-weight:600;letter-spacing:0;text-transform:none;color:#94a3b8}
+  .wp-roster{display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-height:34px}
+  .wp-roster-chip{border:0;background:none;padding:0;border-radius:50%;cursor:grab;line-height:0;transition:transform .15s}
+  .wp-roster-chip:hover{transform:translateY(-3px) scale(1.08)}
+  .wp-roster-chip.is-armed{transform:translateY(-2px) scale(1.12);border-radius:50%;box-shadow:0 0 0 3px #fff,0 0 0 6px #6366f1;animation:wp-armpulse 1.1s ease-in-out infinite}
+  @keyframes wp-armpulse{0%,100%{box-shadow:0 0 0 3px #fff,0 0 0 6px #6366f1}50%{box-shadow:0 0 0 3px #fff,0 0 0 8px rgba(99,102,241,.45)}}
+  body.wp-arming .wp-bullet{cursor:copy}
+  body.wp-arming .wp-bullet:hover{background:rgba(99,102,241,.10);box-shadow:inset 0 0 0 1.5px rgba(99,102,241,.5)}
+  .wp-arming-hint{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:10000;display:flex;align-items:center;gap:10px;
+    background:#312e81;color:#fff;padding:10px 12px 10px 10px;border-radius:30px;box-shadow:0 16px 40px -12px rgba(49,46,129,.6);font-size:13.5px;font-weight:600}
+  .wp-arming-stop{border:0;background:rgba(255,255,255,.18);color:#fff;font-family:inherit;font-weight:700;font-size:12.5px;padding:5px 12px;border-radius:20px;cursor:pointer}
+  .wp-arming-stop:hover{background:rgba(255,255,255,.3)}
+  .wp-roster-chip:active{cursor:grabbing}
+  .wp-avatar{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-weight:800;letter-spacing:.02em;box-shadow:0 2px 5px rgba(15,23,42,.18)}
+  .wp-avwrap{position:relative;display:inline-flex;line-height:0}
+  .wp-avtip{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%) translateY(3px);
+    background:#111827;color:#fff;font-size:11.5px;font-weight:600;line-height:1;white-space:nowrap;
+    padding:5px 8px;border-radius:7px;pointer-events:none;opacity:0;transition:opacity .14s,transform .14s;z-index:50;box-shadow:0 6px 18px -6px rgba(0,0,0,.5)}
+  .wp-avtip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#111827}
+  .wp-avwrap:hover .wp-avtip{opacity:1;transform:translateX(-50%) translateY(0)}
+  body.wp-capture .wp-avtip{display:none}
+  .wp-train-chip{display:inline-flex;align-items:center;gap:6px;background:#f8fafc;border:1px solid var(--line);border-radius:22px;padding:3px 10px 3px 3px;cursor:grab}
+  .wp-train-chip:active{cursor:grabbing}
+  .wp-train-on{font-size:12px;font-weight:700;color:var(--ink-soft)}
+  .wp-train-note-edit{background:none;border:0;font-family:inherit;font-size:12px;font-weight:700;color:var(--ink-soft);cursor:pointer;padding:1px 4px;border-radius:6px}
+  .wp-train-note-edit:hover{background:#eef2f7}
+  .wp-train-note-edit.is-empty{color:#b6c0cf}
+  .wp-train-note-input{font-size:12px;font-weight:700;width:96px;padding:2px 6px}
+  .wp-sharedby-edit{background:none;border:0;font-family:inherit;font-size:14px;font-weight:800;color:#ffffff;cursor:pointer;padding:1px 5px;border-radius:6px}
+  .wp-sharedby-edit:hover{background:rgba(255,255,255,.18)}
+  .wp-sharedby-input{font-size:14px;font-weight:800;width:44px;text-align:center;text-transform:uppercase;padding:2px 4px}
+
+  /* drop feedback */
+  .wp-drop-ok{outline:2px dashed #6366f1;outline-offset:2px;background:rgba(99,102,241,.06)}
+  .wp-strip-block.wp-drop-ok{outline-offset:-2px}
+  .wp-card.wp-drop-before{box-shadow:0 -3px 0 0 #6366f1, 0 12px 34px -22px rgba(15,23,42,.4) !important}
+  .wp-card.wp-drop-after{box-shadow:0 3px 0 0 #6366f1, 0 12px 34px -22px rgba(15,23,42,.4) !important}
+
+  /* grid */
+  .wp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:16px;align-items:start}
+  .wp-card{position:relative;background:#fff;border:1px solid var(--line);border-top:0;border-radius:20px;overflow:hidden;
+    box-shadow:0 12px 34px -22px rgba(15,23,42,.4);transition:box-shadow .25s,transform .25s}
+  .wp-card::before{content:"";display:block;height:4px;background:var(--accent)}
+  .wp-card:hover{transform:translateY(-4px);box-shadow:0 22px 44px -20px rgba(15,23,42,.35)}
+  body.wp-dragging .wp-card:hover{transform:none}
+  @keyframes wp-fade-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  .wp-in{opacity:0;animation:wp-fade-up .5s cubic-bezier(.22,1,.36,1) both}
+  /* new bar springs up from the bottom with a little bounce */
+  @keyframes wp-spring{
+    0%{opacity:0;transform:translateY(60px) scale(.85)}
+    55%{opacity:1;transform:translateY(-8px) scale(1.03)}
+    75%{transform:translateY(2px) scale(.99)}
+    100%{opacity:1;transform:translateY(0) scale(1)}
+  }
+  .wp-spring{animation:wp-spring .55s cubic-bezier(.34,1.56,.64,1) both}
+  /* delete: the bar bursts into Bain-red sparkles, then dissolves away */
+  .wp-bar.is-removing{overflow:visible;position:relative;z-index:7;
+    animation:wp-burst .26s cubic-bezier(.3,.9,.4,1) forwards, wp-bar-collapse .32s ease .28s forwards}
+  @keyframes wp-burst{
+    0%{transform:scale(1);box-shadow:0 12px 34px -22px rgba(15,23,42,.4)}
+    35%{transform:scale(1.05);box-shadow:0 0 0 3px rgba(204,0,0,.35),0 0 34px 4px rgba(204,0,0,.45);background:#fff5f5}
+    100%{transform:scale(.6);opacity:0;background:#fff}
+  }
+  @keyframes wp-bar-collapse{to{opacity:0;max-height:0;padding-top:0;padding-bottom:0;margin:0;border-width:0}}
+  .wp-sparkles{position:absolute;inset:0;pointer-events:none;overflow:visible;z-index:8;border-radius:20px}
+  .wp-sparkles i{position:absolute;left:50%;top:50%;width:var(--sz,16px);height:var(--sz,16px);opacity:0;
+    background:radial-gradient(circle at 50% 50%, #ffffff 0%, var(--c,#cc0000) 40%, rgba(204,0,0,0) 72%);
+    clip-path:polygon(50% 0%,59% 41%,100% 50%,59% 59%,50% 100%,41% 59%,0% 50%,41% 41%);
+    filter:drop-shadow(0 0 5px var(--c,#cc0000));
+    animation:wp-fly .68s cubic-bezier(.2,.7,.3,1) forwards}
+  @keyframes wp-fly{
+    0%{opacity:0;transform:translate(-50%,-50%) translate(0,0) scale(.2) rotate(0deg)}
+    22%{opacity:1;transform:translate(-50%,-50%) translate(calc(var(--dx,0px)*.5),calc(var(--dy,0px)*.5)) scale(1.25) rotate(70deg)}
+    100%{opacity:0;transform:translate(-50%,-50%) translate(var(--dx,0px),var(--dy,0px)) scale(.15) rotate(150deg)}
+  }
+  .wp-card-head{display:flex;align-items:center;gap:12px;padding:16px 18px 10px}
+  .wp-num-badge{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex-shrink:0;border:0;cursor:pointer;
+    background:var(--accent);color:#fff;font-weight:800;font-size:21px;font-family:inherit;box-shadow:0 6px 16px -6px var(--accent)}
+  .wp-num-input{width:44px;height:40px;text-align:center;font-size:20px;font-weight:800;border:2px solid var(--accent);border-radius:12px;padding:0;font-family:inherit;color:var(--ink);outline:none}
+  .wp-card-title{flex:1;min-width:0}
+  .wp-card-name{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+  /* per-bar tools (hover) */
+  .wp-bar-tools{display:flex;gap:6px;margin-left:auto;align-self:flex-start;opacity:0;transition:opacity .2s}
+  .wp-card:hover .wp-bar-tools{opacity:1}
+  .wp-bar-tools:focus-within{opacity:1}
+  .wp-tool{width:30px;height:30px;border-radius:8px;border:1.5px solid var(--line);background:#fff;color:var(--ink-soft);
+    display:grid;place-items:center;cursor:pointer;flex-shrink:0;transition:background .15s,color .15s,border-color .15s,transform .15s}
+  .wp-tool:hover{transform:scale(1.08)}
+  .wp-add{border-style:dashed;border-color:var(--accent);color:var(--accent)}
+  .wp-add:hover{background:var(--tint)}
+  .wp-grip{cursor:grab}
+  .wp-grip:active{cursor:grabbing}
+  .wp-del-bar:hover{background:#fef2f2;color:#dc2626;border-color:#fecaca}
+  .wp-del-bar.is-armed{background:#dc2626;color:#fff;border-color:#dc2626}
+  .wp-del-bar.is-armed:hover{background:#b91c1c;border-color:#b91c1c;color:#fff}
+
+  /* editable name + code */
+  .wp-editable-dark{display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:2px 4px;border-radius:7px;cursor:text;text-align:left;font-family:inherit;color:var(--ink)}
+  .wp-editable-dark:hover{background:#f1f5f9}
+  .wp-editable-dark .wp-pen{opacity:0;flex-shrink:0;transition:opacity .2s;color:var(--ink-soft)}
+  .wp-editable-dark:hover .wp-pen{opacity:.55}
+  .wp-editable-dark.is-empty span{color:#94a3b8}
+  .wp-input-dark{font-family:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--accent);border-radius:8px;padding:3px 8px;outline:none}
+  .wp-name-edit{font-size:17px;font-weight:800}
+  .wp-name-input{font-size:17px;font-weight:800;min-width:180px;max-width:100%}
+  .wp-code-edit{font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--accent);background:var(--tint);border:0;padding:3px 8px;border-radius:6px;cursor:pointer;font-family:inherit}
+  .wp-code-edit.is-empty{display:none;color:#94a3b8;background:none;border:1px dashed #cbd5e1}
+  .wp-card:hover .wp-code-edit.is-empty,.wp-card-head:focus-within .wp-code-edit.is-empty{display:inline-flex}
+  .wp-code-input{width:78px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px}
+
+  /* status bars (MyCX/SA) */
+  .wp-status .wp-card-head{flex-wrap:wrap;padding:18px}
+  .wp-name-badge{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 18px;border-radius:12px;background:var(--accent);color:#fff;font-weight:800;font-size:17px;letter-spacing:.02em;box-shadow:0 6px 16px -8px rgba(15,23,42,.5)}
+  .wp-status-people{display:inline-flex;flex-wrap:wrap;gap:9px;align-items:center;min-height:34px;padding:2px 4px;border-radius:10px}
+
+  /* bullets */
+  .wp-bullets{list-style:none;margin:0;padding:2px 12px 16px}
+  .wp-bullet{display:flex;align-items:flex-start;gap:9px;padding:4px 6px;border-radius:10px;transition:background .16s}
+  .wp-bullet:hover{background:var(--tint)}
+  .wp-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:10px;flex-shrink:0;
+    border:0;padding:0;cursor:pointer;transition:transform .15s,box-shadow .15s}
+  .wp-dot:hover{transform:scale(1.9);box-shadow:0 0 0 4px var(--tint)}
+  .wp-dot:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  /* strike-through then collapse-away when a task is clicked done */
+  .wp-bullet-text .wp-strike-line{position:relative}
+  .wp-bullet-text .wp-strike-line::after{content:"";position:absolute;left:0;top:52%;height:2px;width:0;background:currentColor;border-radius:2px}
+  .wp-bullet.is-striking{overflow:hidden}
+  .wp-bullet.is-striking .wp-bullet-text{color:#94a3b8}
+  .wp-bullet.is-striking .wp-strike-line::after{animation:wp-strike .22s ease forwards}
+  .wp-bullet.is-striking{animation:wp-collapse .28s ease .24s forwards}
+  @keyframes wp-strike{from{width:0}to{width:100%}}
+  @keyframes wp-collapse{from{opacity:1}to{opacity:0;max-height:0;padding-top:0;padding-bottom:0;margin:0;transform:translateX(6px)}}
+  .wp-bullet-text{flex:1;min-width:0}
+  .wp-bullet-edit{font-size:14.5px;font-weight:500;line-height:1.4;padding:1px 4px;width:100%}
+  .wp-bullet-edit span{white-space:normal}
+  .wp-bullet-input{font-size:14.5px;font-weight:500;line-height:1.4;width:100%}
+  .wp-owners{display:inline-flex;gap:5px;flex-shrink:0;padding-top:1px;flex-wrap:wrap;justify-content:flex-end;max-width:55%}
+  .wp-move-group{display:flex;flex-direction:column;gap:1px;flex-shrink:0;align-self:center;opacity:0;transition:opacity .15s}
+  .wp-bullet:hover .wp-move-group{opacity:1}
+  .wp-move{width:20px;height:15px;border:0;background:none;color:#b6c0cf;cursor:pointer;display:grid;place-items:center;padding:0;border-radius:4px;line-height:0;transition:color .12s,background .12s}
+  .wp-move:hover{color:var(--accent);background:var(--tint)}
+  .wp-move:focus-visible{opacity:1;color:var(--accent)}
+  .wp-up svg{transform:rotate(-90deg)}
+  .wp-down svg{transform:rotate(90deg)}
+  body.wp-arming .wp-move-group{display:none}
+  .wp-owner-chip{position:relative;line-height:0}
+  .wp-avatar-x{position:absolute;top:-5px;right:-5px;width:15px;height:15px;border-radius:50%;border:0;background:#ef4444;color:#fff;display:none;place-items:center;cursor:pointer;padding:0;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .wp-owner-chip:hover .wp-avatar-x,.wp-status-people .wp-owner-chip:hover .wp-avatar-x{display:grid}
+
+  /* + project tile */
+  .wp-addproject{grid-column:1 / -1;display:flex;align-items:center;justify-content:center;gap:8px;
+    border:2px dashed #d5dbe6;border-radius:14px;padding:8px;background:rgba(255,255,255,.4);color:#94a3b8;
+    font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;
+    opacity:0;transition:border-color .18s,color .18s,background .18s,opacity .2s}
+  .wp-grid:hover .wp-addproject,.wp-addproject:focus-visible{opacity:1}
+  .wp-addproject:hover{border-color:#6366f1;color:#4f46e5;background:rgba(99,102,241,.05)}
+  body.wp-capture .wp-addproject{display:none}
+
+  /* footer */
+  .wp-footer{margin-top:26px;display:flex;flex-wrap:wrap;gap:16px;align-items:stretch}
+  .wp-game{flex:1;min-width:300px;display:flex;align-items:center;gap:14px;color:var(--ink);
+    background:linear-gradient(120deg,#fff 0%,#f5f3ff 100%);border:1px solid var(--line);border-radius:18px;padding:16px 18px;
+    box-shadow:0 10px 28px -20px rgba(15,23,42,.4)}
+  .wp-game-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex-shrink:0;color:#fff;
+    background:linear-gradient(135deg,#4f46e5 0%,#2563eb 40%,#06b6d4 78%,#14b8a6 112%)}
+  .wp-game-icon svg{stroke:#fff}
+  .wp-game-body{flex:1;min-width:0}
+  .wp-game-title{font-size:15px;font-weight:800;margin-bottom:2px}
+  .wp-game-title-edit{font-size:15px;font-weight:800;color:var(--ink);padding:1px 4px}
+  .wp-game-title-input{font-size:15px;font-weight:800;width:100%;max-width:320px}
+  .wp-game-linkrow{display:flex;align-items:center;gap:6px;margin-top:2px}
+  .wp-game-link{font-size:13px;color:var(--ink-soft);font-weight:600;text-decoration:underline;word-break:break-all}
+  .wp-game-link:hover{color:#4f46e5}
+  .wp-game-link-edit{opacity:0;border:0;background:none;color:var(--ink-soft);cursor:pointer;padding:2px;border-radius:6px;line-height:0;flex-shrink:0;transition:opacity .18s,background .15s}
+  .wp-game:hover .wp-game-link-edit{opacity:.7}
+  .wp-game-link-edit:hover{background:#eef2f7}
+  .wp-game-sub-edit{font-size:13px;color:var(--ink-soft);font-weight:500;padding:1px 4px;width:100%}
+  .wp-game-sub-edit span{white-space:normal}
+  .wp-game-sub-edit.is-empty span{color:#94a3b8}
+  .wp-game-sub-input{font-size:13px;font-weight:500;width:100%;max-width:420px}
+  .wp-footer-actions{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:10px;padding:0 4px}
+  .wp-signoff{font-size:14px;color:#ffffff}
+  .wp-signoff strong{color:#ffffff}
+  .wp-export{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:22px;padding:11px 20px;cursor:pointer;font-family:inherit;
+    font-size:14px;font-weight:800;color:#fff;background:linear-gradient(135deg,#4f46e5 0%,#2563eb 40%,#06b6d4 78%,#14b8a6 112%);box-shadow:0 10px 24px -10px rgba(37,99,235,.6);
+    transition:transform .15s,box-shadow .15s}
+  .wp-export:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(37,99,235,.6)}
+  .wp-export:disabled{opacity:.6;cursor:default;transform:none}
+  .wp-logrow{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .wp-logbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;color:#475569;
+    border-radius:20px;padding:7px 13px;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;
+    transition:background .15s,color .15s,border-color .15s,transform .12s}
+  .wp-logbtn:hover{background:#eef2ff;color:#4f46e5;border-color:#c7d2fe;transform:translateY(-1px)}
+
+  /* capture mode: strip interactive chrome + effects for a clean export */
+  body.wp-capture .wp-bar-tools,
+  body.wp-capture .wp-avatar-x,
+  body.wp-capture .wp-pen,
+  body.wp-capture .wp-footer-actions,
+  body.wp-capture .wp-hint,
+  body.wp-capture .wp-code-edit.is-empty,
+  body.wp-capture .wp-train-note-edit.is-empty,
+  body.wp-capture .wp-game-sub-edit.is-empty{display:none !important}
+  body.wp-capture .wp-game-link-edit{display:none !important}
+  body.wp-capture .wp-shine{display:none}
+  body.wp-capture{animation:none}
+  body.wp-capture .wp-bg{display:none}
+  body.wp-capture .wp-container{
+    background:linear-gradient(165deg,#dbe6ff 0%,#e7ddff 26%,#f6ddef 52%,#ffe4d6 76%,#ffe9c9 100%);
+    padding:26px !important;border-radius:26px}
+
+  /* focus + motion */
+  .wp-editable:focus-visible,.wp-editable-dark:focus-visible,.wp-code-edit:focus-visible,.wp-num-badge:focus-visible,
+  .wp-roster-chip:focus-visible,.wp-tool:focus-visible,.wp-addproject:focus-visible,.wp-export:focus-visible,
+  .wp-game:focus-visible,.wp-input-dark:focus,.wp-editable-input:focus,.wp-num-input:focus{
+    outline:3px solid #6366f1;outline-offset:2px;border-radius:8px}
+  @media (prefers-reduced-motion:reduce){
+    .wp-shine{display:none}
+    .wp-in,.wp-spring{animation:none;opacity:1}
+    .wp-sparkles{display:none}
+    body{animation:none}
+    .wp-star,.wp-star-dot{animation:none}
+    *{transition-duration:.01ms !important}
+  }
+  @media (max-width:700px){
+    .wp-grid{grid-template-columns:1fr}
+    .wp-sz-greet{font-size:21px}
+  }
+</style>
+</head>
+<body class="wp-root">
+  <div class="wp-bg" aria-hidden="true"><span class="wp-blob b1"></span><span class="wp-blob b2"></span><span class="wp-blob b3"></span><div class="wp-stars" id="wp-stars"></div></div>
+  <div id="app"></div>
+
+<script>
+/* ===================== twilight starfield (live only) ===================== */
+(function buildStars(){
+  try {
+    var host = document.getElementById("wp-stars");
+    if (!host) return;
+    var rand = function(a,b){ return a + Math.random()*(b-a); };
+    var COUNT = 120;
+    var frag = document.createDocumentFragment();
+    for (var i=0;i<COUNT;i++){
+      // weight vertical position toward the top (dark sky); squared random pushes most stars up high
+      var yPct = Math.pow(Math.random(), 1.7) * 88;      // 0% (top) .. ~88%
+      var xPct = Math.random() * 100;
+      var size = rand(1, 3.2);
+      // fainter/smaller lower down
+      var depth = 1 - (yPct / 100);
+      var star = document.createElement("span");
+      star.className = "wp-star";
+      star.style.left = xPct.toFixed(2) + "%";
+      star.style.top = yPct.toFixed(2) + "%";
+      star.style.width = size.toFixed(2) + "px";
+      star.style.height = size.toFixed(2) + "px";
+      star.style.setProperty("--dr", rand(45,85).toFixed(1) + "s");   // drift duration
+      star.style.setProperty("--dd", (-rand(0,40)).toFixed(1) + "s");  // drift start offset (negative = mid-cycle)
+      var dot = document.createElement("span");
+      dot.className = "wp-star-dot";
+      dot.style.setProperty("--tw", rand(1.8,4.5).toFixed(2) + "s");   // twinkle speed
+      dot.style.setProperty("--td", (-rand(0,6)).toFixed(2) + "s");    // twinkle offset
+      dot.style.setProperty("--o1", (0.12 + depth*0.22).toFixed(2));   // dim end (brighter up high)
+      dot.style.setProperty("--o2", (0.55 + depth*0.42).toFixed(2));   // bright end
+      star.appendChild(dot);
+      frag.appendChild(star);
+    }
+    host.appendChild(frag);
+  } catch(_) { /* background is decorative; never let it break the app */ }
+})();
+/* ===================== data ===================== */
+const KEY = "workplan-cohort1-html-v1";
+const BAIN_RED = "#CC0000";
+const SA_GRADIENT = "linear-gradient(120deg, #CC0000 0%, #C026D3 52%, #6D28D9 100%)";
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+const DEFAULT_GREETING = "Hi team — happy Thursday! One more good push and the weekend's in sight. \uD83D\uDE4C";
+const DEFAULT_SUBLINE = "A fresh plan for the day. Let's get after it \u26A1";
+
+const DEFAULT_BARS = [
+  { id:"ws1", name:"CVCP FS", code:"X5WJ", tasks:[
+    {id:"ws1-a", text:"Rebuild a new template for the input file", owners:["AP"]},
+    {id:"ws1-b", text:"Continue updating the code for cost-to-serve", owners:["AP"]},
+    {id:"ws1-c", text:"Finalize slides for the CVCP IRIS deck", owners:["AP","HW"]},
+  ]},
+  { id:"ws2", name:"CVCP Auto", code:"R3KU", tasks:[
+    {id:"ws2-a", text:"Finalize calculations in model", owners:["SK"]},
+    {id:"ws2-b", text:"Mail for Daniel", owners:["SW","SK"]},
+  ]},
+  { id:"ws3", name:"CVCP Telco", code:"", tasks:[
+    {id:"ws3-a", text:"Validate calculations for the Value Bridge", owners:["AH","AR"]},
+    {id:"ws3-b", text:"Finalize telco bridge for alignment with the case team", owners:["AR","AH"]},
+  ]},
+  { id:"ws4", name:"KSA Loyalty Survey", code:"B5QF", tasks:[
+    {id:"ws4-a", text:"Continue loyalty-programs research for Financial Services", owners:["AF","NM","SR"]},
+    {id:"ws4-b", text:"Continue the retail storyline and prepare the features table", owners:["BB"]},
+    {id:"ws4-c", text:"Continue dashboard updates (w/ Basma) and incorporate the FS section", owners:["SR"]},
+    {id:"ws4-d", text:"Start the one-pager for the call with Cyril", owners:["AS"]},
+    {id:"ws4-e", text:"Align on next steps for KSA (reach out to Dom & Cyril)", owners:["AS","HW"]},
+  ]},
+  { id:"ws5", name:"Personalization", code:"", tasks:[
+    {id:"ws5-a", text:"Finalize the structure of the internal deck", owners:["SW"]},
+    {id:"ws5-b", text:"Identify BCN intervention and incorporate retail work", owners:["SW","VP"]},
+  ]},
+  { id:"ws6", name:"Admin \u00B7 Trainings \u00B7 Misc", code:"", tasks:[
+    {id:"ws6-a", text:"Final walkthrough of CVCP Automation", owners:["AM","AR"]},
+    {id:"ws6-b", text:"MCX learning session", owners:["SW"]},
+    {id:"ws6-c", text:"Internal CVCP call", owners:["SW","HW","AR","AP","AH","SK"]},
+    {id:"ws6-d", text:"On training", owners:["HW"]},
+    {id:"ws6-e", text:"Leave tracker", owners:["SR"]},
+    {id:"ws6-f", text:"Python trainings", owners:["AP","SR","AF"]},
+    {id:"ws6-g", text:"MyCX trainings", owners:["SK","AP","NM","SR","AF"]},
+  ]},
+];
+
+const STATUS_INIT = [
+  { id:"mycx", label:"MyCX", accent:"#121212", people:["SS","RD"] },
+  { id:"sa",   label:"SA",   accent:SA_GRADIENT, people:["SP","SM"] },
+];
+function computeRoster(){
+  const s = new Set();
+  DEFAULT_BARS.forEach(b => b.tasks.forEach(t => t.owners.forEach(o => s.add(o))));
+  STATUS_INIT.forEach(sb => sb.people.forEach(o => s.add(o)));   // include everyone on MyCX / SA
+  return Array.from(s).sort();
+}
+function clone(x){ return JSON.parse(JSON.stringify(x)); }
+function defaultBoard(){
+  return {
+    day: 13, month: 7, year: "2026", greeting: DEFAULT_GREETING, subline: DEFAULT_SUBLINE,
+    teamToday: computeRoster(),
+    statusBars: clone(STATUS_INIT),
+    onTraining: [ { who:"AG", on:"Aspire" } ],
+    gameTitle: "Fun game for the day",
+    gameText: "https://www.nytimes.com/games/wordle",
+    sharedBy: "AH",
+    bars: clone(DEFAULT_BARS),
+  };
+}
+
+/* ===================== avatar colours ===================== */
+const NAMES = {
+  AF:"Aryan", AR:"Arpit", AG:"Anand", AH:"Anshuman", AM:"Abhijoy", AP:"Apoorva",
+  AS:"Amrinderpreet", BB:"Bhumika", HW:"Himani", NM:"Nishita", RD:"Riddhii",
+  SK:"Samyak", SM:"Shaurya", SP:"Swastik", SR:"Saurabh", SS:"Satpreet", SW:"Sheetal", VP:"Vyapak"
+};
+function fullName(i){ return NAMES[i] || i; }   // unknown initials (e.g. XZ) just show the initials
+const AVATAR_COLORS = ["#6366F1","#EC4899","#14B8A6","#F59E0B","#8B5CF6","#10B981","#EF4444","#0EA5E9","#F97316","#A855F7","#06B6D4","#84CC16","#E11D48","#3B82F6","#D946EF","#22C55E"];
+const AVATAR_OVERRIDES = { AH: BAIN_RED, NM: "#0EA5E9" };
+const UNKNOWN_COLOR = "#111111";                 // black icon for people not on the board
+
+/* everyone the board already knows about (seeded from defaults, kept in sync on load) */
+const KNOWN_INITIALS = new Set();
+function seedKnown(b){
+  KNOWN_INITIALS.clear();
+  computeRoster().forEach(p => KNOWN_INITIALS.add(p));      // default roster (task owners + MyCX/SA)
+  if (b){
+    (b.teamToday||[]).forEach(p => KNOWN_INITIALS.add(p));
+    (b.onTraining||[]).forEach(p => KNOWN_INITIALS.add(p.who));
+    (b.statusBars||[]).forEach(s => (s.people||[]).forEach(p => KNOWN_INITIALS.add(p)));
+    (b.bars||[]).forEach(bar => (bar.tasks||[]).forEach(t => (t.owners||[]).forEach(p => KNOWN_INITIALS.add(p))));
+  }
+}
+function hashStr(s){ let h=0; for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return h; }
+function avatarColor(i){
+  if (AVATAR_OVERRIDES[i]) return AVATAR_OVERRIDES[i];
+  if (!NAMES[i]) return UNKNOWN_COLOR;                        // not a known team member -> black icon
+  return AVATAR_COLORS[hashStr(i)%AVATAR_COLORS.length];
+}
+function textOn(hex){ const c=hex.replace("#",""); const r=parseInt(c.slice(0,2),16),g=parseInt(c.slice(2,4),16),b=parseInt(c.slice(4,6),16); return (0.299*r+0.587*g+0.114*b)/255>0.62?"#1a1a1a":"#ffffff"; }
+function rgba(hex,a){ const c=hex.replace("#",""); const r=parseInt(c.slice(0,2),16),g=parseInt(c.slice(2,4),16),b=parseInt(c.slice(4,6),16); return "rgba("+r+","+g+","+b+","+a+")"; }
+const uid = () => "b"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+
+/* ===================== tiny DOM helpers ===================== */
+function h(tag, attrs){
+  const e = document.createElement(tag);
+  attrs = attrs || {};
+  for (const k in attrs){
+    const v = attrs[k];
+    if (v == null || v === false) continue;
+    if (k === "class") e.className = v;
+    else if (k === "style" && typeof v === "object"){
+      for (const sk in v){
+        if (sk.slice(0,2) === "--") e.style.setProperty(sk, v[sk]);   // custom props need setProperty
+        else e.style[sk] = v[sk];
+      }
+    }
+    else if (k.slice(0,2) === "on" && typeof v === "function") e.addEventListener(k.slice(2).toLowerCase(), v);
+    else if (v === true) e.setAttribute(k, "");
+    else e.setAttribute(k, v);
+  }
+  for (let i=2;i<arguments.length;i++){
+    let kids = arguments[i];
+    if (!Array.isArray(kids)) kids = [kids];
+    kids.forEach(kid => {
+      if (kid == null || kid === false) return;
+      e.appendChild((typeof kid==="string"||typeof kid==="number") ? document.createTextNode(String(kid)) : kid);
+    });
+  }
+  return e;
+}
+const ICONS = {
+  plus:'<path d="M5 12h14"/><path d="M12 5v14"/>',
+  x:'<path d="M18 6 6 18"/><path d="M6 6l12 12"/>',
+  pencil:'<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+  grip:'<circle cx="9" cy="6" r="1.4"/><circle cx="9" cy="12" r="1.4"/><circle cx="9" cy="18" r="1.4"/><circle cx="15" cy="6" r="1.4"/><circle cx="15" cy="12" r="1.4"/><circle cx="15" cy="18" r="1.4"/>',
+  gamepad:'<line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.544-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/>',
+  chevron:'<path d="m9 18 6-6-6-6"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/>',
+  save:'<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/>',
+  file:'<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h5"/><path d="M8 13h8"/><path d="M8 17h8"/>',
+  upload:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/>',
+};
+function ico(name, size, opt){
+  opt = opt || {}; size = size || 18;
+  const span = document.createElement("span");
+  span.className = "wp-ic"; span.setAttribute("aria-hidden","true");
+  const fill = opt.filled ? "currentColor" : "none";
+  const stroke = opt.filled ? "none" : "currentColor";
+  span.innerHTML = '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="'+fill+'" stroke="'+stroke+'" stroke-width="'+(opt.stroke||2)+'" stroke-linecap="round" stroke-linejoin="round">'+ICONS[name]+'</svg>';
+  return span;
+}
+function pen(dark){ const s=ico("pencil",13); s.className="wp-ic wp-pen"; return s; }
+function avatarEl(initials, size, faded){
+  size = size || 26;
+  const bg = avatarColor(initials);
+  const av = h("span",{class:"wp-avatar", style:{width:size+"px",height:size+"px",background:bg,color:textOn(bg),fontSize:(size*0.4)+"px",opacity:faded?0.4:1}}, initials);
+  const name = fullName(initials);
+  const host = h("span",{class:"wp-avwrap"}, av, h("span",{class:"wp-avtip"}, name));
+  host.setAttribute("title", name);   // native fallback
+  return host;
+}
+
+/* ===================== inline editable ===================== */
+function editable(o){
+  const value = o.value || "";
+  function makeInput(){
+    const inp = h("input", { class:o.inputCls||"", value:value, maxlength:o.max||200, placeholder:o.placeholder||"" });
+    let done = false;
+    const commit = () => {
+      if (done) return; done = true;
+      inp.removeEventListener("blur", commit);     // stop the pending blur from firing a second onSave during re-render
+      const v = o.allowEmpty ? inp.value.trim() : (inp.value.trim() || value);
+      o.onSave(v);
+    };
+    inp.addEventListener("keydown", e => {
+      if(e.key==="Enter"){ e.preventDefault(); commit(); }
+      else if(e.key==="Escape"){ done = true; inp.removeEventListener("blur", commit); render(); }
+    });
+    inp.addEventListener("blur", commit);
+    return inp;
+  }
+  if (o.startEditing){
+    const inp = makeInput();
+    setTimeout(()=>{ inp.focus(); try{ inp.select(); }catch(_){} }, 0);
+    return inp;
+  }
+  const empty = !value;
+  const btn = h("button", { class:(o.cls||"")+(empty?" is-empty":""), title:"Click to edit" },
+    h("span", {}, empty && o.placeholder ? o.placeholder : value),
+    o.pen === false ? null : pen()
+  );
+  btn.addEventListener("click", () => { const inp = makeInput(); btn.replaceWith(inp); inp.focus(); try{ inp.select(); }catch(_){} });
+  return btn;
+}
+
+/* ===================== state + persistence ===================== */
+let board = defaultBoard();
+let newBulletId = null, newBarNameId = null;
+let justAddedBarId = null;
+let armedPerson = null;      // name-icon armed from Team today for click-to-assign
+let dragState = null;
+let firstRender = true;
+
+try { const s = localStorage.getItem(KEY); if (s){ const d = JSON.parse(s); if (d && Array.isArray(d.bars)) board = Object.assign(defaultBoard(), d); } } catch(_){}
+
+/* one-time cleanup: any legacy "AK" icon in saved data becomes "AM" */
+var didMigrate = (function migrateInitials(){
+  const swap = { AK: "AM" };
+  let changed = false;
+  const fix = a => (a||[]).map(x => { if (swap[x]) { changed = true; return swap[x]; } return x; });
+  (board.bars||[]).forEach(bar => (bar.tasks||[]).forEach(t => { t.owners = fix(t.owners); }));
+  (board.statusBars||[]).forEach(s => { s.people = fix(s.people); });
+  board.teamToday = Array.from(new Set(fix(board.teamToday)));
+  (board.onTraining||[]).forEach(p => { if (swap[p.who]) { p.who = swap[p.who]; changed = true; } });
+  return changed;
+})();
+
+seedKnown(board);
+
+/* make sure every known name icon is present in Team today (unless already moved to On training) */
+(function ensureRoster(){
+  computeRoster().forEach(p => { if (board.teamToday.indexOf(p) < 0 && !board.onTraining.some(o => o.who === p)) board.teamToday.push(p); });
+  board.teamToday.sort();
+})();
+
+function persist(){ try { localStorage.setItem(KEY, JSON.stringify(board)); } catch(_){} }
+if (didMigrate) { try { persist(); } catch(_){} }   // write the cleaned (AK->AM) board back immediately
+function setBoard(updater){ board = (typeof updater==="function") ? updater(board) : updater; seedKnown(board); persist(); render(); }
+
+/* mutations */
+function setField(f,v){ setBoard(b => Object.assign({}, b, {[f]:v})); }
+function renameBar(id,name){ setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id===id?Object.assign({},x,{name}):x)})); }
+function recodeBar(id,code){ setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id===id?Object.assign({},x,{code}):x)})); }
+function deleteBar(id){ setBoard(b => Object.assign({}, b, {bars:b.bars.filter(x=>x.id!==id)})); }
+function animateDeleteBar(sec, id){
+  if (sec.classList.contains("is-removing")) return;
+  // Bain-red sparkle burst flying outward from the centre
+  const SPARK_COLORS = ["#cc0000","#e11d1d","#ff4d4d","#a30000","#ff7a7a","#ffffff"];
+  const rect = sec.getBoundingClientRect();
+  const reach = Math.max(160, Math.min(rect.width, 560) * 0.55);   // how far they travel
+  const layer = h("div",{class:"wp-sparkles"});
+  const N = 30;
+  for (let i=0;i<N;i++){
+    const s = document.createElement("i");
+    const ang = (i / N) * Math.PI * 2 + Math.random() * 0.5;       // spread around the circle
+    const dist = reach * (0.35 + Math.random() * 0.75);
+    s.style.setProperty("--dx", Math.cos(ang) * dist + "px");
+    s.style.setProperty("--dy", Math.sin(ang) * dist * 0.7 + "px"); // slightly flattened
+    s.style.setProperty("--sz", (10 + Math.random()*16) + "px");
+    s.style.setProperty("--c", SPARK_COLORS[(Math.random()*SPARK_COLORS.length)|0]);
+    s.style.animationDelay = (Math.random()*0.10) + "s";
+    layer.appendChild(s);
+  }
+  sec.appendChild(layer);
+  sec.classList.add("is-removing");
+  let done=false; const finish=()=>{ if(done)return; done=true; deleteBar(id); };
+  sec.addEventListener("animationend", e => { if (e.animationName === "wp-bar-collapse") finish(); });
+  setTimeout(finish, 800);
+}
+function addProject(){ const id = uid(); newBarNameId = id; justAddedBarId = id; setBoard(b => Object.assign({}, b, {bars:b.bars.concat([{id, name:"", code:"", tasks:[]}])})); }
+
+/* --- shared: pull "text - AB/CD" trailing owners (2-letter initials only) --- */
+function parseTrailingOwners(str){
+  let text = (str || "").trim();
+  let owners = [];
+  const m = text.match(/^(.*?)[\s\u00A0]+[-\u2013\u2014][\s\u00A0]+([^-\u2013\u2014]+)$/);
+  if (m){
+    const cand = m[2].trim().split(/[\/,&]|\s+and\s+/i).map(t => t.trim()).filter(Boolean);
+    if (cand.length && cand.every(t => /^[A-Za-z]{2}$/.test(t))){
+      owners = cand.map(t => t.toUpperCase());
+      text = m[1].trim();
+    }
+  }
+  return { text: text, owners: owners };
+}
+
+/* --- paste parsing: multi-line clipboard text -> [{text, owners}] --- */
+function parsePastedTasks(raw){
+  const out = [];
+  (raw || "").split(/\r\n|\r|\n/).forEach(line => {
+    // strip a leading bullet/number marker copied from Teams/Outlook/Word
+    let s = line.replace(/^[\s\u00A0]*(?:[-*\u2022\u2023\u25E6\u2043\u2219o]|\d+[.)])[\s\u00A0]+/, "").trim();
+    if (!s) return;
+    const p = parseTrailingOwners(s);
+    out.push({ text: p.text, owners: p.owners });
+  });
+  return out;
+}
+function addTasksBulk(barId, items){
+  if (!items || !items.length) return;
+  const newTasks = items.map(it => ({ id: uid(), text: it.text, owners: (it.owners||[]).slice() }));
+  setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id!==barId?x:Object.assign({},x,{tasks:x.tasks.concat(newTasks)}))}));
+}
+function setArmed(who){ armedPerson = (armedPerson === who) ? null : who; render(); }
+function disarm(){ if(armedPerson){ armedPerson = null; render(); } }
+function deleteBullet(barId,taskId){ setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id!==barId?x:Object.assign({},x,{tasks:x.tasks.filter(t=>t.id!==taskId)}))})); }
+function editBullet(barId,taskId,text){
+  if(!text.trim()){ deleteBullet(barId,taskId); return; }
+  const p = parseTrailingOwners(text);                 // typed "task - AS/AF" -> text + owner icons
+  const newText = p.text || text.trim();
+  setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id!==barId?x:Object.assign({},x,{tasks:x.tasks.map(t=>{
+    if (t.id!==taskId) return t;
+    let owners = t.owners.slice();
+    p.owners.forEach(o => { if (owners.indexOf(o) < 0) owners.push(o); });
+    return Object.assign({}, t, { text:newText, owners:owners });
+  })}))}));
+}
+function addBullet(barId){ const id = uid(); newBulletId = id; setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id!==barId?x:Object.assign({},x,{tasks:x.tasks.concat([{id, text:"", owners:[]}])}))})); }
+function moveBullet(barId, taskId, dir){
+  setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>{
+    if (x.id!==barId) return x;
+    const arr = x.tasks.slice();
+    const i = arr.findIndex(t=>t.id===taskId);
+    const j = i + dir;
+    if (i<0 || j<0 || j>=arr.length) return x;
+    const tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+    return Object.assign({}, x, {tasks:arr});
+  })}));
+}
+function addOwner(barId,taskId,who){ setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id!==barId?x:Object.assign({},x,{tasks:x.tasks.map(t=>t.id!==taskId?t:Object.assign({},t,{owners:t.owners.indexOf(who)>=0?t.owners:t.owners.concat([who])}))}))})); }
+function removeOwner(barId,taskId,who){ setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id!==barId?x:Object.assign({},x,{tasks:x.tasks.map(t=>t.id!==taskId?t:Object.assign({},t,{owners:t.owners.filter(o=>o!==who)}))}))})); }
+function addStatusPerson(sid,who){ setBoard(b => Object.assign({}, b, {statusBars:b.statusBars.map(s=>s.id!==sid?s:Object.assign({},s,{people:s.people.indexOf(who)>=0?s.people:s.people.concat([who])}))})); }
+function removeStatusPerson(sid,who){ setBoard(b => Object.assign({}, b, {statusBars:b.statusBars.map(s=>s.id!==sid?s:Object.assign({},s,{people:s.people.filter(o=>o!==who)}))})); }
+function moveToTraining(who){ setBoard(b => Object.assign({}, b, {teamToday:b.teamToday.filter(x=>x!==who), onTraining:b.onTraining.some(p=>p.who===who)?b.onTraining:b.onTraining.concat([{who,on:""}])})); }
+function moveToTeam(who){ setBoard(b => Object.assign({}, b, {onTraining:b.onTraining.filter(p=>p.who!==who), teamToday:b.teamToday.indexOf(who)>=0?b.teamToday:b.teamToday.concat([who]).sort()})); }
+function setTrainingNote(who,on){ setBoard(b => Object.assign({}, b, {onTraining:b.onTraining.map(p=>p.who===who?Object.assign({},p,{on}):p)})); }
+function reorderBar(draggedId,targetId,after){
+  setBoard(b => {
+    const arr = b.bars.slice();
+    const from = arr.findIndex(x=>x.id===draggedId); if(from<0) return b;
+    const moved = arr.splice(from,1)[0];
+    let ti = arr.findIndex(x=>x.id===targetId); if(ti<0) ti = arr.length; else if(after) ti += 1;
+    arr.splice(ti,0,moved);
+    return Object.assign({}, b, {bars:arr});
+  });
+}
+function moveBarToNumber(id,num){
+  const to = num-1;
+  setBoard(b => {
+    const arr = b.bars.slice();
+    const from = arr.findIndex(x=>x.id===id); if(from<0) return b;
+    const moved = arr.splice(from,1)[0];
+    arr.splice(Math.max(0,Math.min(arr.length,to)),0,moved);
+    return Object.assign({}, b, {bars:arr});
+  });
+}
+
+/* ===================== drag & drop plumbing ===================== */
+function clearHighlights(){
+  document.querySelectorAll(".wp-drop-ok").forEach(e=>e.classList.remove("wp-drop-ok"));
+  document.querySelectorAll(".wp-drop-before").forEach(e=>e.classList.remove("wp-drop-before"));
+  document.querySelectorAll(".wp-drop-after").forEach(e=>e.classList.remove("wp-drop-after"));
+}
+function personSource(el, who, from){
+  el.setAttribute("draggable","true");
+  el.addEventListener("dragstart", e => { dragState={type:"person",who,from}; document.body.classList.add("wp-dragging"); e.dataTransfer.effectAllowed="copyMove"; e.dataTransfer.setData("text/plain",who); });
+  el.addEventListener("dragend", () => { dragState=null; document.body.classList.remove("wp-dragging"); clearHighlights(); });
+}
+function personTarget(el, onDrop){
+  el.addEventListener("dragover", e => { if(dragState && dragState.type==="person"){ e.preventDefault(); e.dataTransfer.dropEffect = dragState.from==="team" ? "copy" : "move"; el.classList.add("wp-drop-ok"); } });
+  el.addEventListener("dragleave", () => el.classList.remove("wp-drop-ok"));
+  el.addEventListener("drop", e => { if(dragState && dragState.type==="person"){ e.preventDefault(); el.classList.remove("wp-drop-ok"); onDrop(dragState); } });
+}
+function barReorderTarget(el, bar){
+  el.addEventListener("dragover", e => {
+    if(dragState && dragState.type==="bar" && dragState.id!==bar.id){
+      e.preventDefault();
+      const r = el.getBoundingClientRect(); const after = e.clientY > r.top + r.height/2;
+      el.classList.toggle("wp-drop-before", !after); el.classList.toggle("wp-drop-after", after);
+    }
+  });
+  el.addEventListener("dragleave", () => { el.classList.remove("wp-drop-before","wp-drop-after"); });
+  el.addEventListener("drop", e => {
+    if(dragState && dragState.type==="bar" && dragState.id!==bar.id){
+      e.preventDefault();
+      const r = el.getBoundingClientRect(); const after = e.clientY > r.top + r.height/2;
+      el.classList.remove("wp-drop-before","wp-drop-after");
+      reorderBar(dragState.id, bar.id, after);
+    }
+  });
+}
+
+/* ===================== builders ===================== */
+function buildDatePicker(){
+  const dayOpts = [];
+  for (let d=1; d<=31; d++) dayOpts.push(h("option",{value:String(d)},String(d)));
+  const monthOpts = MONTHS.map((m,i)=>h("option",{value:String(i)}, m));
+  const daySel = h("select",{class:"wp-date-select wp-day","aria-label":"Day"}, dayOpts);
+  const monthSel = h("select",{class:"wp-date-select wp-month","aria-label":"Month"}, monthOpts);
+  daySel.value = String(board.day);
+  monthSel.value = String(board.month);
+  daySel.addEventListener("change", () => setField("day", parseInt(daySel.value,10)));
+  monthSel.addEventListener("change", () => setField("month", parseInt(monthSel.value,10)));
+  const yearInp = h("input",{class:"wp-year-input", value:board.year, maxlength:4, inputmode:"numeric","aria-label":"Year"});
+  yearInp.addEventListener("change", () => setField("year", yearInp.value.trim() || board.year));
+  return h("div",{class:"wp-datewrap"},
+    h("div",{class:"wp-datepick"}, daySel, monthSel, yearInp),
+    h("span",{class:"wp-date-print"}, board.day + " " + MONTHS[board.month] + " " + board.year)
+  );
+}
+function buildHeader(){
+  return h("header",{class:"wp-header"},
+    h("div",{class:"wp-shine","aria-hidden":"true"}),
+    h("div",{class:"wp-head-main"},
+      h("div",{class:"wp-eyebrow"},"Cohort 1 \u00B7 Daily Workplan"),
+      buildDatePicker(),
+      editable({value:board.greeting, onSave:v=>setField("greeting",v), cls:"wp-editable wp-sz-greet", inputCls:"wp-editable-input wp-sz-greet", max:160}),
+      editable({value:board.subline, onSave:v=>setField("subline",v), cls:"wp-editable wp-sz-sub", inputCls:"wp-editable-input wp-sz-sub", max:160})
+    )
+  );
+}
+function teamChip(who){
+  const chip = h("button",{class:"wp-roster-chip" + (armedPerson===who?" is-armed":""),
+    title:"Click to tag tasks with " + who + " \u00B7 or drag onto a task / MyCX / SA / On-training"}, avatarEl(who,30));
+  personSource(chip, who, "team");
+  chip.addEventListener("click", (e)=>{ e.preventDefault(); setArmed(who); });
+  return chip;
+}
+function trainChip(p){
+  const av = avatarEl(p.who,22,true);
+  const label = editable({
+    value:p.on, onSave:v=>setTrainingNote(p.who,v), allowEmpty:true, pen:false, placeholder:"+",
+    cls:"wp-train-note-edit", inputCls:"wp-train-note-input", max:20
+  });
+  const chip = h("span",{class:"wp-train-chip", title:"Drag the icon back to Team today \u00B7 click the label to edit"}, av, label);
+  personSource(av, p.who, "training");   // drag the avatar (so clicking the label edits instead of dragging)
+  return chip;
+}
+function buildTeamStrip(){
+  const teamBlock = h("div",{class:"wp-strip-block"},
+    h("div",{class:"wp-strip-label"}, ico("users",15), "Team today", h("span",{class:"wp-hint"},"drag to assign")),
+    h("div",{class:"wp-roster"}, board.teamToday.map(teamChip))
+  );
+  personTarget(teamBlock, ds => { if(ds.from==="training") moveToTeam(ds.who); });
+
+  const trainBlock = h("div",{class:"wp-strip-block wp-training"},
+    h("div",{class:"wp-strip-label"},"On training / out"),
+    h("div",{class:"wp-roster"}, board.onTraining.map(trainChip))
+  );
+  personTarget(trainBlock, ds => { if(ds.from==="team") moveToTraining(ds.who); });
+
+  return h("section",{class:"wp-team-strip"}, teamBlock, trainBlock);
+}
+function ownerChip(who, onRemove){
+  const x = h("button",{class:"wp-avatar-x", title:"Remove"}, ico("x",10,{stroke:2.6}));
+  x.addEventListener("click", e => { e.stopPropagation(); onRemove(); });
+  return h("span",{class:"wp-owner-chip"}, avatarEl(who,24), x);
+}
+function buildStatusBar(sb, idx){
+  const people = h("span",{class:"wp-status-people"}, sb.people.map(p => ownerChip(p, () => removeStatusPerson(sb.id, p))));
+  const sec = h("section",{class:"wp-card wp-status", style:{"--accent":sb.accent}},
+    h("div",{class:"wp-card-head"}, h("span",{class:"wp-name-badge"}, sb.label), people)
+  );
+  personTarget(sec, ds => addStatusPerson(sb.id, ds.who));
+  return sec;
+}
+function strikeAndDelete(li, bar, task){
+  if (li.classList.contains("is-striking")) return;      // guard double-clicks
+  li.classList.add("is-striking");
+  let done = false;
+  const finish = () => { if (done) return; done = true; deleteBullet(bar.id, task.id); };
+  li.addEventListener("animationend", e => { if (e.animationName === "wp-collapse") finish(); });
+  setTimeout(finish, 700);                               // fallback if animationend doesn't fire
+}
+function buildBullet(bar, task){
+  const dot = h("button",{class:"wp-dot", title:"Click to complete & remove", "aria-label":"Complete and remove task"});
+  const up = h("button",{class:"wp-move wp-up", title:"Move up", "aria-label":"Move task up"}, ico("chevron",13));
+  const down = h("button",{class:"wp-move wp-down", title:"Move down", "aria-label":"Move task down"}, ico("chevron",13));
+  const li = h("li",{class:"wp-bullet"},
+    dot,
+    h("span",{class:"wp-bullet-text"},
+      h("span",{class:"wp-strike-line"}, editable({
+        value:task.text, onSave:t=>editBullet(bar.id,task.id,t), startEditing:task.id===newBulletId, pen:false,
+        placeholder:"Type a task\u2026", cls:"wp-editable-dark wp-bullet-edit", inputCls:"wp-input-dark wp-bullet-input", max:200
+      }))
+    ),
+    (task.owners && task.owners.length) ? h("span",{class:"wp-owners"}, task.owners.map(o => ownerChip(o, () => removeOwner(bar.id,task.id,o)))) : null,
+    h("span",{class:"wp-move-group"}, up, down)
+  );
+  dot.addEventListener("click", () => strikeAndDelete(li, bar, task));
+  up.addEventListener("click", (e) => { e.stopPropagation(); moveBullet(bar.id, task.id, -1); });
+  down.addEventListener("click", (e) => { e.stopPropagation(); moveBullet(bar.id, task.id, 1); });
+  li.addEventListener("click", (e) => {
+    if (armedPerson){ e.preventDefault(); e.stopPropagation(); addOwner(bar.id, task.id, armedPerson); }
+  }, true);   // capture: while a name icon is armed, a click tags this task instead of editing/deleting it
+  personTarget(li, ds => addOwner(bar.id, task.id, ds.who));
+  return li;
+}
+function buildBar(bar, index){
+  const numBadge = editable({ value:String(index+1), onSave:v=>{ const n=parseInt(v,10); if(!isNaN(n)) moveBarToNumber(bar.id,n); else render(); }, cls:"wp-num-badge", inputCls:"wp-num-input", pen:false, max:2 });
+
+  const grip = h("button",{class:"wp-tool wp-grip", title:"Drag to reorder"}, ico("grip",16,{filled:true}));
+  const addBtn = h("button",{class:"wp-tool wp-add", title:"Add a task"}, ico("plus",18,{stroke:2.5}));
+  const delBtn = h("button",{class:"wp-tool wp-del-bar", title:"Delete this bar"}, ico("x",16,{stroke:2.4}));
+  addBtn.addEventListener("click", ()=>addBullet(bar.id));
+  let armed=false, armTimer=null;
+  function disarm(){ armed=false; delBtn.classList.remove("is-armed"); delBtn.replaceChildren(ico("x",16,{stroke:2.4})); delBtn.title="Delete this bar"; if(armTimer){clearTimeout(armTimer);armTimer=null;} }
+  delBtn.addEventListener("click", ()=>{
+    if(!armed){ armed=true; delBtn.classList.add("is-armed"); delBtn.replaceChildren(ico("check",16,{stroke:2.6})); delBtn.title="Click again to confirm delete"; armTimer=setTimeout(disarm,3000); }
+    else { if(armTimer) clearTimeout(armTimer); animateDeleteBar(sec, bar.id); }
+  });
+
+  const sec = h("section",{class:"wp-card wp-bar", "data-barid":bar.id, style:{"--accent":BAIN_RED,"--tint":rgba(BAIN_RED,0.06)}},
+    h("div",{class:"wp-card-head"},
+      numBadge,
+      h("div",{class:"wp-card-title"},
+        h("div",{class:"wp-card-name"},
+          editable({ value:bar.name, onSave:v=>renameBar(bar.id,v), startEditing:bar.id===newBarNameId, placeholder:"New project", cls:"wp-editable-dark wp-name-edit", inputCls:"wp-input-dark wp-name-input", max:40 }),
+          editable({ value:bar.code, onSave:v=>recodeBar(bar.id,v), allowEmpty:true, pen:false, placeholder:"+ code", cls:"wp-code-edit", inputCls:"wp-input-dark wp-code-input", max:6 })
+        )
+      ),
+      h("div",{class:"wp-bar-tools"}, grip, addBtn, delBtn)
+    ),
+    (function(){
+      const ul = h("ul",{class:"wp-bullets"}, bar.tasks.map(t => buildBullet(bar, t)));
+      ul.addEventListener("paste", e => {
+        const data = (e.clipboardData || window.clipboardData);
+        const text = data ? data.getData("text") : "";
+        const items = parsePastedTasks(text);
+        // only hijack when it's clearly a task list (2+ lines, or a single line with owners); otherwise let normal edit-paste happen
+        const multiLine = /\r|\n/.test((text||"").trim());
+        if (items.length && (multiLine || items.length > 1 || items[0].owners.length)){
+          e.preventDefault();
+          addTasksBulk(bar.id, items);
+        }
+      });
+      return ul;
+    })()
+  );
+
+  grip.addEventListener("dragstart", e => { dragState={type:"bar",id:bar.id}; document.body.classList.add("wp-dragging"); e.dataTransfer.effectAllowed="move"; e.dataTransfer.setData("text/plain",bar.id); try{ e.dataTransfer.setDragImage(sec, 24, 24); }catch(_){} });
+  grip.addEventListener("dragend", () => { dragState=null; document.body.classList.remove("wp-dragging"); clearHighlights(); });
+  grip.setAttribute("draggable","true");
+  barReorderTarget(sec, bar);
+  return sec;
+}
+function buildGrid(){
+  const kids = [];
+  board.statusBars.forEach((s,i)=>kids.push(buildStatusBar(s,i)));
+  board.bars.forEach((b,i)=>kids.push(buildBar(b,i)));
+  const addProj = h("button",{class:"wp-addproject", title:"Add a new project / task bar"}, ico("plus",18,{stroke:2.5}), "Add project");
+  addProj.addEventListener("click", addProject);
+  kids.push(addProj);
+  return h("main",{class:"wp-grid"}, kids);
+}
+function isLinkish(s){ return /^(https?:\/\/|www\.)\S+$/i.test((s||"").trim()); }
+function buildGameLink(){
+  const val = board.gameText || "";
+  // when it looks like a URL, render an actual link (grey), but allow editing via a small pencil that swaps to an input
+  if (isLinkish(val)){
+    const href = /^https?:\/\//i.test(val) ? val : ("https://" + val);
+    const link = h("a",{class:"wp-game-link", href:href, target:"_blank", rel:"noopener noreferrer", title:"Open \u00B7 (click the pencil to edit)"}, val);
+    const edit = h("button",{class:"wp-game-link-edit", title:"Edit link"}, ico("pencil",12));
+    const wrap = h("div",{class:"wp-game-linkrow"}, link, edit);
+    edit.addEventListener("click", ()=>{
+      const inp = h("input",{class:"wp-input-dark wp-game-sub-input", value:val, maxlength:200});
+      let done=false;
+      const commit = ()=>{ if(done)return; done=true; inp.removeEventListener("blur",commit); setField("gameText", inp.value.trim()); };
+      inp.addEventListener("keydown", e=>{ if(e.key==="Enter"){e.preventDefault();commit();} else if(e.key==="Escape"){done=true;inp.removeEventListener("blur",commit);render();} });
+      inp.addEventListener("blur", commit);
+      wrap.replaceWith(inp); inp.focus(); try{inp.select();}catch(_){}
+    });
+    return wrap;
+  }
+  // otherwise a plain editable grey line (also accepts a pasted URL, which then renders as a link)
+  return editable({ value:val, onSave:v=>setField("gameText",v), allowEmpty:true, placeholder:"Add a link or note\u2026",
+    cls:"wp-editable-dark wp-game-sub-edit", inputCls:"wp-input-dark wp-game-sub-input", max:200 });
+}
+function buildFooter(){
+  const game = h("div",{class:"wp-game"},
+    h("span",{class:"wp-game-icon"}, ico("gamepad",22)),
+    h("div",{class:"wp-game-body"},
+      editable({ value:board.gameTitle, onSave:v=>setField("gameTitle", v), allowEmpty:true, placeholder:"Title\u2026",
+        cls:"wp-editable-dark wp-game-title-edit", inputCls:"wp-input-dark wp-game-title-input", max:60 }),
+      buildGameLink()
+    )
+  );
+
+  const exportBtn = h("button",{class:"wp-export", title:"Download a PNG of the whole dashboard"}, ico("download",17,{stroke:2.2}), "Export PNG");
+  exportBtn.addEventListener("click", () => exportPNG(exportBtn));
+
+  const jsonBtn = h("button",{class:"wp-logbtn", title:"Save this day as a .json log (structured, re-importable)"}, ico("save",15,{stroke:2}), "Export JSON");
+  jsonBtn.addEventListener("click", exportJSON);
+  const textBtn = h("button",{class:"wp-logbtn", title:"Save this day as email-style .txt"}, ico("file",15,{stroke:2}), "Export text");
+  textBtn.addEventListener("click", exportText);
+  const importInput = h("input",{type:"file", accept:".json,application/json", style:{display:"none"}});
+  importInput.addEventListener("change", (e)=>{ const f=e.target.files && e.target.files[0]; if(f) importJSONFile(f); importInput.value=""; });
+  const importBtn = h("button",{class:"wp-logbtn", title:"Load a saved .json workplan"}, ico("upload",15,{stroke:2}), "Import");
+  importBtn.addEventListener("click", ()=>importInput.click());
+
+  return h("footer",{class:"wp-footer"},
+    game,
+    h("div",{class:"wp-footer-actions"},
+      h("span",{class:"wp-signoff"}, "Shared by ",
+        editable({ value:board.sharedBy, onSave:v=>setField("sharedBy", v.toUpperCase().slice(0,2)), pen:false,
+          cls:"wp-sharedby-edit", inputCls:"wp-input-dark wp-sharedby-input", max:2 })
+      ),
+      h("div",{class:"wp-logrow"}, jsonBtn, textBtn, importBtn, importInput),
+      exportBtn
+    )
+  );
+}
+
+/* ===================== logging: export / import ===================== */
+function dateStamp(){ return board.year + "-" + String(board.month+1).padStart(2,"0") + "-" + String(board.day).padStart(2,"0"); }
+function fileStamp(){ return (board.day + "-" + MONTHS[board.month] + "-" + board.year).replace(/[^a-z0-9]+/gi,"-").toLowerCase(); }
+const LETTERS = "abcdefghijklmnopqrstuvwxyz";
+
+/* structured snapshot shaped like the workplan in the email */
+function buildSnapshot(){
+  return {
+    kind: "cohort1-workplan",
+    version: 1,
+    date: dateStamp(),                                   // e.g. 2026-08-18
+    dateLabel: board.day + " " + MONTHS[board.month] + " " + board.year,
+    savedAt: new Date().toISOString(),
+    greeting: board.greeting,
+    subheading: board.subline,
+    allocations: (board.statusBars||[]).map(s => ({
+      name: s.label,
+      people: (s.people||[]).map(p => ({ initials: p, name: fullName(p) }))
+    })),
+    onTraining: (board.onTraining||[]).map(p => ({ initials: p.who, name: fullName(p.who), status: p.on || "" })),
+    workstreams: (board.bars||[]).map((bar, i) => ({
+      number: i + 1,
+      name: bar.name,
+      code: bar.code || "",
+      tasks: (bar.tasks||[]).map((t, j) => ({
+        label: LETTERS[j] || String(j+1),
+        text: t.text,
+        owners: (t.owners||[]).map(o => ({ initials: o, name: fullName(o) })),
+        ownersText: (t.owners||[]).join("/")
+      }))
+    })),
+    game: { title: board.gameTitle, link: board.gameText },
+    sharedBy: { initials: board.sharedBy, name: fullName(board.sharedBy) },
+    board: board                                         // raw board too, so an import restores everything exactly
+  };
+}
+
+/* email-style plain text, mirroring the photo layout */
+function buildText(){
+  const s = buildSnapshot();
+  const L = [];
+  L.push(s.greeting);
+  L.push("");
+  if (s.subheading) { L.push(s.subheading); L.push(""); }
+  const alloc = s.allocations.filter(a => a.people.length)
+    .map(a => a.people.map(p => p.initials).join(", ") + " on " + a.name);
+  const out = s.onTraining.map(p => p.initials + (p.status ? " on " + p.status : ""));
+  const ctx = alloc.concat(out).join(", ");
+  L.push("Sharing the workplan for the day below (" + s.date + (ctx ? "  \u2014  " + ctx : "") + "):");
+  L.push("");
+  s.workstreams.forEach(ws => {
+    L.push(ws.number + ". " + ws.name + (ws.code ? " (" + ws.code + ")" : ""));
+    ws.tasks.forEach(t => {
+      L.push("    " + t.label + ". " + t.text + (t.ownersText ? " \u2013 " + t.ownersText : ""));
+    });
+    L.push("");
+  });
+  if (s.game && (s.game.title || s.game.link)) { L.push((s.game.title || "Fun game for the day") + ": " + (s.game.link || "")); L.push(""); }
+  L.push("Shared by " + s.sharedBy.initials);
+  return L.join("\n");
+}
+
+function downloadFile(filename, text, mime){
+  const blob = new Blob([text], { type: mime || "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1500);
+}
+function exportJSON(){ downloadFile("workplan-" + fileStamp() + ".json", JSON.stringify(buildSnapshot(), null, 2), "application/json"); }
+function exportText(){ downloadFile("workplan-" + fileStamp() + ".txt", buildText(), "text/plain;charset=utf-8"); }
+
+function importJSONFile(file){
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+      const restored = (data && data.board && Array.isArray(data.board.bars)) ? data.board
+                     : (data && Array.isArray(data.bars)) ? data : null;   // accept a snapshot or a raw board
+      if (!restored) { alert("That file doesn't look like a saved workplan."); return; }
+      setBoard(Object.assign(defaultBoard(), restored));
+    } catch(e) { alert("Couldn't read that file: " + e.message); }
+  };
+  reader.readAsText(file);
+}
+
+/* ===================== export PNG ===================== */
+async function exportPNG(btn){
+  const node = document.querySelector(".wp-container");
+  if (!node) return;
+  if (!window.htmlToImage){ alert("The export library hasn't loaded (a CDN may be blocked on this network).\nYou can still use your OS screenshot (Win+Shift+S)."); return; }
+  const label = btn ? btn.innerHTML : "";
+  if (btn){ btn.disabled = true; btn.textContent = "Preparing\u2026"; }
+  document.body.classList.add("wp-capture");
+  try {
+    await new Promise(r => requestAnimationFrame(r));
+    const dataUrl = await window.htmlToImage.toPng(node, {
+      pixelRatio: 2,
+      backgroundColor: "#f3f0fb",
+      cacheBust: true,
+      style: { margin: "0" }
+    });
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = "workplan-" + (board.day + "-" + MONTHS[board.month] + "-" + board.year).replace(/[^a-z0-9]+/gi,"-").toLowerCase() + ".png";
+    document.body.appendChild(a); a.click(); a.remove();
+  } catch (err) {
+    console.error(err);
+    alert("Sorry, the export failed: " + (err && err.message ? err.message : err));
+  } finally {
+    document.body.classList.remove("wp-capture");
+    if (btn){ btn.disabled = false; btn.innerHTML = label; }
+  }
+}
+
+/* ===================== render ===================== */
+function render(){
+  const root = h("div",{class:"wp-container"}, buildHeader(), buildTeamStrip(), buildGrid(), buildFooter());
+  const app = document.getElementById("app");
+  try { app.replaceChildren(root); } catch(_) { app.innerHTML = ""; app.appendChild(root); }
+  if (firstRender){
+    const grid = root.querySelector(".wp-grid");
+    if (grid){
+      Array.from(grid.children).forEach((c, i) => {
+        c.classList.add("wp-in");
+        c.style.animationDelay = (i * 55) + "ms";
+        c.addEventListener("animationend", function done(e){
+          if (e.target !== c) return;
+          c.classList.remove("wp-in"); c.style.animation = ""; c.style.opacity = ""; c.style.animationDelay = "";
+          c.removeEventListener("animationend", done);
+        });
+      });
+    }
+    firstRender = false;
+  }
+  if (justAddedBarId){
+    const sec = root.querySelector('.wp-bar[data-barid="'+justAddedBarId+'"]');
+    if (sec){
+      sec.classList.add("wp-spring");
+      sec.addEventListener("animationend", function done(e){ if(e.target!==sec) return; sec.classList.remove("wp-spring"); sec.removeEventListener("animationend",done); });
+    }
+    justAddedBarId = null;
+  }
+  newBulletId = null; newBarNameId = null;
+
+  // click-to-assign: body cursor cue + floating hint while a name icon is armed
+  document.body.classList.toggle("wp-arming", !!armedPerson);
+  document.querySelectorAll(".wp-arming-hint").forEach(e => e.remove());
+  if (armedPerson){
+    const hint = h("div",{class:"wp-arming-hint"},
+      avatarEl(armedPerson,22),
+      h("span",{}, "Tagging \u2014 click tasks to add"),
+      (function(){ const b=h("button",{class:"wp-arming-stop", title:"Stop tagging (Esc)"}, "Done"); b.addEventListener("click", disarm); return b; })()
+    );
+    document.body.appendChild(hint);
+  }
+}
+if (!window.__wpArmKey){
+  window.__wpArmKey = true;
+  document.addEventListener("keydown", e => { if (e.key === "Escape") disarm(); });
+}
+render();
+</script>
+</body>
+</html>
