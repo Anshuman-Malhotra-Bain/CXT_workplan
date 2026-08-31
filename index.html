@@ -5,8 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Cohort 1 — Daily Workplan</title>
 <!-- Screenshot library (used only by the Export button). If your network blocks CDNs, this can be bundled inline instead. -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+<!-- Screenshot library (html-to-image v1.11.11) bundled inline so Export PNG works offline / on any network, no CDN needed. -->
+<script>
+!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"function"==typeof define&&define.amd?define(["exports"],e):e((t="undefined"!=typeof globalThis?globalThis:t||self).htmlToImage={})}(this,(function(t){"use strict";function e(t,e,n,r){return new(n||(n=Promise))((function(i,o){function u(t){try{a(r.next(t))}catch(t){o(t)}}function c(t){try{a(r.throw(t))}catch(t){o(t)}}function a(t){var e;t.done?i(t.value):(e=t.value,e instanceof n?e:new n((function(t){t(e)}))).then(u,c)}a((r=r.apply(t,e||[])).next())}))}function n(t,e){var n,r,i,o,u={label:0,sent:function(){if(1&i[0])throw i[1];return i[1]},trys:[],ops:[]};return o={next:c(0),throw:c(1),return:c(2)},"function"==typeof Symbol&&(o[Symbol.iterator]=function(){return this}),o;function c(c){return function(a){return function(c){if(n)throw new TypeError("Generator is already executing.");for(;o&&(o=0,c[0]&&(u=0)),u;)try{if(n=1,r&&(i=2&c[0]?r.return:c[0]?r.throw||((i=r.return)&&i.call(r),0):r.next)&&!(i=i.call(r,c[1])).done)return i;switch(r=0,i&&(c=[2&c[0],i.value]),c[0]){case 0:case 1:i=c;break;case 4:return u.label++,{value:c[1],done:!1};case 5:u.label++,r=c[1],c=[0];continue;case 7:c=u.ops.pop(),u.trys.pop();continue;default:if(!(i=u.trys,(i=i.length>0&&i[i.length-1])||6!==c[0]&&2!==c[0])){u=0;continue}if(3===c[0]&&(!i||c[1]>i[0]&&c[1]<i[3])){u.label=c[1];break}if(6===c[0]&&u.label<i[1]){u.label=i[1],i=c;break}if(i&&u.label<i[2]){u.label=i[2],u.ops.push(c);break}i[2]&&u.ops.pop(),u.trys.pop();continue}c=e.call(t,u)}catch(t){c=[6,t],r=0}finally{n=i=0}if(5&c[0])throw c[1];return{value:c[0]?c[1]:void 0,done:!0}}([c,a])}}}var r,i=(r=0,function(){return r+=1,"u".concat("0000".concat((Math.random()*Math.pow(36,4)<<0).toString(36)).slice(-4)).concat(r)});function o(t){for(var e=[],n=0,r=t.length;n<r;n++)e.push(t[n]);return e}function u(t,e){var n=(t.ownerDocument.defaultView||window).getComputedStyle(t).getPropertyValue(e);return n?parseFloat(n.replace("px","")):0}function c(t,e){void 0===e&&(e={});var n,r,i,o=e.width||(r=u(n=t,"border-left-width"),i=u(n,"border-right-width"),n.clientWidth+r+i),c=e.height||function(t){var e=u(t,"border-top-width"),n=u(t,"border-bottom-width");return t.clientHeight+e+n}(t);return{width:o,height:c}}var a=16384;function s(t,e){return void 0===e&&(e={}),t.toBlob?new Promise((function(n){t.toBlob(n,e.type?e.type:"image/png",e.quality?e.quality:1)})):new Promise((function(n){for(var r=window.atob(t.toDataURL(e.type?e.type:void 0,e.quality?e.quality:void 0).split(",")[1]),i=r.length,o=new Uint8Array(i),u=0;u<i;u+=1)o[u]=r.charCodeAt(u);n(new Blob([o],{type:e.type?e.type:"image/png"}))}))}function l(t){return new Promise((function(e,n){var r=new Image;r.decode=function(){return e(r)},r.onload=function(){return e(r)},r.onerror=n,r.crossOrigin="anonymous",r.decoding="async",r.src=t}))}function f(t){return e(this,void 0,void 0,(function(){return n(this,(function(e){return[2,Promise.resolve().then((function(){return(new XMLSerializer).serializeToString(t)})).then(encodeURIComponent).then((function(t){return"data:image/svg+xml;charset=utf-8,".concat(t)}))]}))}))}function h(t,r,i){return e(this,void 0,void 0,(function(){var e,o,u;return n(this,(function(n){return e="http://www.w3.org/2000/svg",o=document.createElementNS(e,"svg"),u=document.createElementNS(e,"foreignObject"),o.setAttribute("width","".concat(r)),o.setAttribute("height","".concat(i)),o.setAttribute("viewBox","0 0 ".concat(r," ").concat(i)),u.setAttribute("width","100%"),u.setAttribute("height","100%"),u.setAttribute("x","0"),u.setAttribute("y","0"),u.setAttribute("externalResourcesRequired","true"),o.appendChild(u),u.appendChild(t),[2,f(o)]}))}))}var d=function(t,e){if(t instanceof e)return!0;var n=Object.getPrototypeOf(t);return null!==n&&(n.constructor.name===e.name||d(n,e))};function v(t,e,n){var r=".".concat(t,":").concat(e),i=n.cssText?function(t){var e=t.getPropertyValue("content");return"".concat(t.cssText," content: '").concat(e.replace(/'|"/g,""),"';")}(n):function(t){return o(t).map((function(e){var n=t.getPropertyValue(e),r=t.getPropertyPriority(e);return"".concat(e,": ").concat(n).concat(r?" !important":"",";")})).join(" ")}(n);return document.createTextNode("".concat(r,"{").concat(i,"}"))}function p(t,e,n){var r=window.getComputedStyle(t,n),o=r.getPropertyValue("content");if(""!==o&&"none"!==o){var u=i();try{e.className="".concat(e.className," ").concat(u)}catch(t){return}var c=document.createElement("style");c.appendChild(v(u,n,r)),e.appendChild(c)}}var g="application/font-woff",m="image/jpeg",w={woff:g,woff2:g,ttf:"application/font-truetype",eot:"application/vnd.ms-fontobject",png:"image/png",jpg:m,jpeg:m,gif:"image/gif",tiff:"image/tiff",svg:"image/svg+xml",webp:"image/webp"};function b(t){var e=function(t){var e=/\.([^./]*?)$/g.exec(t);return e?e[1]:""}(t).toLowerCase();return w[e]||""}function y(t){return-1!==t.search(/^(data:)/)}function x(t,e){return"data:".concat(e,";base64,").concat(t)}function S(t,r,i){return e(this,void 0,void 0,(function(){var e,o;return n(this,(function(n){switch(n.label){case 0:return[4,fetch(t,r)];case 1:if(404===(e=n.sent()).status)throw new Error('Resource "'.concat(e.url,'" not found'));return[4,e.blob()];case 2:return o=n.sent(),[2,new Promise((function(t,n){var r=new FileReader;r.onerror=n,r.onloadend=function(){try{t(i({res:e,result:r.result}))}catch(t){n(t)}},r.readAsDataURL(o)}))]}}))}))}var E={};function C(t,r,i){return e(this,void 0,void 0,(function(){var e,o,u,c,a;return n(this,(function(n){switch(n.label){case 0:if(e=function(t,e,n){var r=t.replace(/\?.*/,"");return n&&(r=t),/ttf|otf|eot|woff2?/i.test(r)&&(r=r.replace(/.*\//,"")),e?"[".concat(e,"]").concat(r):r}(t,r,i.includeQueryParams),null!=E[e])return[2,E[e]];i.cacheBust&&(t+=(/\?/.test(t)?"&":"?")+(new Date).getTime()),n.label=1;case 1:return n.trys.push([1,3,,4]),[4,S(t,i.fetchRequestInit,(function(t){var e=t.res,n=t.result;return r||(r=e.headers.get("Content-Type")||""),function(t){return t.split(/,/)[1]}(n)}))];case 2:return u=n.sent(),o=x(u,r),[3,4];case 3:return c=n.sent(),o=i.imagePlaceholder||"",a="Failed to fetch resource: ".concat(t),c&&(a="string"==typeof c?c:c.message),a&&console.warn(a),[3,4];case 4:return E[e]=o,[2,o]}}))}))}function P(t){return e(this,void 0,void 0,(function(){var e;return n(this,(function(n){return"data:,"===(e=t.toDataURL())?[2,t.cloneNode(!1)]:[2,l(e)]}))}))}function R(t,r){return e(this,void 0,void 0,(function(){var e,i,o,u;return n(this,(function(n){switch(n.label){case 0:return t.currentSrc?(e=document.createElement("canvas"),i=e.getContext("2d"),e.width=t.clientWidth,e.height=t.clientHeight,null==i||i.drawImage(t,0,0,e.width,e.height),[2,l(e.toDataURL())]):(o=t.poster,u=b(o),[4,C(o,u,r)]);case 1:return[2,l(n.sent())]}}))}))}function T(t){var r;return e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return e.trys.push([0,3,,4]),(null===(r=null==t?void 0:t.contentDocument)||void 0===r?void 0:r.body)?[4,L(t.contentDocument.body,{},!0)]:[3,2];case 1:return[2,e.sent()];case 2:return[3,4];case 3:return e.sent(),[3,4];case 4:return[2,t.cloneNode(!1)]}}))}))}function A(t,e){return d(e,Element)&&(function(t,e){var n=e.style;if(n){var r=window.getComputedStyle(t);r.cssText?(n.cssText=r.cssText,n.transformOrigin=r.transformOrigin):o(r).forEach((function(i){var o=r.getPropertyValue(i);if("font-size"===i&&o.endsWith("px")){var u=Math.floor(parseFloat(o.substring(0,o.length-2)))-.1;o="".concat(u,"px")}d(t,HTMLIFrameElement)&&"display"===i&&"inline"===o&&(o="block"),"d"===i&&e.getAttribute("d")&&(o="path(".concat(e.getAttribute("d"),")")),n.setProperty(i,o,r.getPropertyPriority(i))}))}}(t,e),function(t,e){p(t,e,":before"),p(t,e,":after")}(t,e),function(t,e){d(t,HTMLTextAreaElement)&&(e.innerHTML=t.value),d(t,HTMLInputElement)&&e.setAttribute("value",t.value)}(t,e),function(t,e){if(d(t,HTMLSelectElement)){var n=e,r=Array.from(n.children).find((function(e){return t.value===e.getAttribute("value")}));r&&r.setAttribute("selected","")}}(t,e)),e}function L(t,r,i){return e(this,void 0,void 0,(function(){return n(this,(function(u){return i||!r.filter||r.filter(t)?[2,Promise.resolve(t).then((function(t){return function(t,r){return e(this,void 0,void 0,(function(){return n(this,(function(e){return d(t,HTMLCanvasElement)?[2,P(t)]:d(t,HTMLVideoElement)?[2,R(t,r)]:d(t,HTMLIFrameElement)?[2,T(t)]:[2,t.cloneNode(!1)]}))}))}(t,r)})).then((function(i){return function(t,r,i){var u,c;return e(this,void 0,void 0,(function(){var e;return n(this,(function(n){switch(n.label){case 0:return e=[],0===(e=null!=(a=t).tagName&&"SLOT"===a.tagName.toUpperCase()&&t.assignedNodes?o(t.assignedNodes()):d(t,HTMLIFrameElement)&&(null===(u=t.contentDocument)||void 0===u?void 0:u.body)?o(t.contentDocument.body.childNodes):o((null!==(c=t.shadowRoot)&&void 0!==c?c:t).childNodes)).length||d(t,HTMLVideoElement)?[2,r]:[4,e.reduce((function(t,e){return t.then((function(){return L(e,i)})).then((function(t){t&&r.appendChild(t)}))}),Promise.resolve())];case 1:return n.sent(),[2,r]}var a}))}))}(t,i,r)})).then((function(e){return A(t,e)})).then((function(t){return function(t,r){return e(this,void 0,void 0,(function(){var e,i,o,u,c,a,s,l,f,h,d,v,p;return n(this,(function(n){switch(n.label){case 0:if(0===(e=t.querySelectorAll?t.querySelectorAll("use"):[]).length)return[2,t];i={},p=0,n.label=1;case 1:return p<e.length?(o=e[p],(u=o.getAttribute("xlink:href"))?(c=t.querySelector(u),a=document.querySelector(u),c||!a||i[u]?[3,3]:(s=i,l=u,[4,L(a,r,!0)])):[3,3]):[3,4];case 2:s[l]=n.sent(),n.label=3;case 3:return p++,[3,1];case 4:if((f=Object.values(i)).length){for(h="http://www.w3.org/1999/xhtml",(d=document.createElementNS(h,"svg")).setAttribute("xmlns",h),d.style.position="absolute",d.style.width="0",d.style.height="0",d.style.overflow="hidden",d.style.display="none",v=document.createElementNS(h,"defs"),d.appendChild(v),p=0;p<f.length;p++)v.appendChild(f[p]);t.appendChild(d)}return[2,t]}}))}))}(t,r)}))]:[2,null]}))}))}var N=/url\((['"]?)([^'"]+?)\1\)/g,k=/url\([^)]+\)\s*format\((["']?)([^"']+)\1\)/g,I=/src:\s*(?:url\([^)]+\)\s*format\([^)]+\)[,;]\s*)+/g;function D(t,r,i,o,u){return e(this,void 0,void 0,(function(){var e,c,a,s;return n(this,(function(n){switch(n.label){case 0:return n.trys.push([0,5,,6]),e=i?function(t,e){if(t.match(/^[a-z]+:\/\//i))return t;if(t.match(/^\/\//))return window.location.protocol+t;if(t.match(/^[a-z]+:/i))return t;var n=document.implementation.createHTMLDocument(),r=n.createElement("base"),i=n.createElement("a");return n.head.appendChild(r),n.body.appendChild(i),e&&(r.href=e),i.href=t,i.href}(r,i):r,c=b(r),a=void 0,u?[4,u(e)]:[3,2];case 1:return s=n.sent(),a=x(s,c),[3,4];case 2:return[4,C(e,c,o)];case 3:a=n.sent(),n.label=4;case 4:return[2,t.replace((l=r,f=l.replace(/([.*+?^${}()|\[\]\/\\])/g,"\\$1"),new RegExp("(url\\(['\"]?)(".concat(f,")(['\"]?\\))"),"g")),"$1".concat(a,"$3"))];case 5:return n.sent(),[3,6];case 6:return[2,t]}var l,f}))}))}function M(t){return-1!==t.search(N)}function H(t,r,i){return e(this,void 0,void 0,(function(){var e,o;return n(this,(function(n){return M(t)?(e=function(t,e){var n=e.preferredFontFormat;return n?t.replace(I,(function(t){for(;;){var e=k.exec(t)||[],r=e[0],i=e[2];if(!i)return"";if(i===n)return"src: ".concat(r,";")}})):t}(t,i),o=function(t){var e=[];return t.replace(N,(function(t,n,r){return e.push(r),t})),e.filter((function(t){return!y(t)}))}(e),[2,o.reduce((function(t,e){return t.then((function(t){return D(t,e,r,i)}))}),Promise.resolve(e))]):[2,t]}))}))}function V(t,r,i){var o;return e(this,void 0,void 0,(function(){var e,u;return n(this,(function(n){switch(n.label){case 0:return(e=null===(o=r.style)||void 0===o?void 0:o.getPropertyValue(t))?[4,H(e,null,i)]:[3,2];case 1:return u=n.sent(),r.style.setProperty(t,u,r.style.getPropertyPriority(t)),[2,!0];case 2:return[2,!1]}}))}))}function F(t,r){return e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return[4,V("background",t,r)];case 1:return e.sent()?[3,3]:[4,V("background-image",t,r)];case 2:e.sent(),e.label=3;case 3:return[4,V("mask",t,r)];case 4:return e.sent()?[3,6]:[4,V("mask-image",t,r)];case 5:e.sent(),e.label=6;case 6:return[2]}}))}))}function j(t,r){return e(this,void 0,void 0,(function(){var e,i,o;return n(this,(function(n){switch(n.label){case 0:return(e=d(t,HTMLImageElement))&&!y(t.src)||d(t,SVGImageElement)&&!y(t.href.baseVal)?[4,C(i=e?t.src:t.href.baseVal,b(i),r)]:[2];case 1:return o=n.sent(),[4,new Promise((function(n,r){t.onload=n,t.onerror=r;var i=t;i.decode&&(i.decode=n),"lazy"===i.loading&&(i.loading="eager"),e?(t.srcset="",t.src=o):t.href.baseVal=o}))];case 2:return n.sent(),[2]}}))}))}function q(t,r){return e(this,void 0,void 0,(function(){var e,i;return n(this,(function(n){switch(n.label){case 0:return e=o(t.childNodes),i=e.map((function(t){return U(t,r)})),[4,Promise.all(i).then((function(){return t}))];case 1:return n.sent(),[2]}}))}))}function U(t,r){return e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return d(t,Element)?[4,F(t,r)]:[3,4];case 1:return e.sent(),[4,j(t,r)];case 2:return e.sent(),[4,q(t,r)];case 3:e.sent(),e.label=4;case 4:return[2]}}))}))}var O={};function B(t){return e(this,void 0,void 0,(function(){var e,r;return n(this,(function(n){switch(n.label){case 0:return null!=(e=O[t])?[2,e]:[4,fetch(t)];case 1:return[4,n.sent().text()];case 2:return r=n.sent(),e={url:t,cssText:r},O[t]=e,[2,e]}}))}))}function z(t,r){return e(this,void 0,void 0,(function(){var i,o,u,c,a=this;return n(this,(function(s){return i=t.cssText,o=/url\(["']?([^"')]+)["']?\)/g,u=i.match(/url\([^)]+\)/g)||[],c=u.map((function(u){return e(a,void 0,void 0,(function(){var e;return n(this,(function(n){return(e=u.replace(o,"$1")).startsWith("https://")||(e=new URL(e,t.url).href),[2,S(e,r.fetchRequestInit,(function(t){var e=t.result;return i=i.replace(u,"url(".concat(e,")")),[u,e]}))]}))}))})),[2,Promise.all(c).then((function(){return i}))]}))}))}function W(t){if(null==t)return[];for(var e=[],n=t.replace(/(\/\*[\s\S]*?\*\/)/gi,""),r=new RegExp("((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})","gi");;){if(null===(u=r.exec(n)))break;e.push(u[0])}n=n.replace(r,"");for(var i=/@import[\s\S]*?url\([^)]*\)[\s\S]*?;/gi,o=new RegExp("((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})","gi");;){var u;if(null===(u=i.exec(n))){if(null===(u=o.exec(n)))break;i.lastIndex=o.lastIndex}else o.lastIndex=i.lastIndex;e.push(u[0])}return e}function $(t,r){return e(this,void 0,void 0,(function(){var e,i;return n(this,(function(n){return e=[],i=[],t.forEach((function(e){if("cssRules"in e)try{o(e.cssRules||[]).forEach((function(t,n){if(t.type===CSSRule.IMPORT_RULE){var o=n+1,u=B(t.href).then((function(t){return z(t,r)})).then((function(t){return W(t).forEach((function(t){try{e.insertRule(t,t.startsWith("@import")?o+=1:e.cssRules.length)}catch(e){console.error("Error inserting rule from remote css",{rule:t,error:e})}}))})).catch((function(t){console.error("Error loading remote css",t.toString())}));i.push(u)}}))}catch(o){var n=t.find((function(t){return null==t.href}))||document.styleSheets[0];null!=e.href&&i.push(B(e.href).then((function(t){return z(t,r)})).then((function(t){return W(t).forEach((function(t){n.insertRule(t,e.cssRules.length)}))})).catch((function(t){console.error("Error loading remote stylesheet",t)}))),console.error("Error inlining remote css file",o)}})),[2,Promise.all(i).then((function(){return t.forEach((function(t){if("cssRules"in t)try{o(t.cssRules||[]).forEach((function(t){e.push(t)}))}catch(e){console.error("Error while reading CSS rules from ".concat(t.href),e)}})),e}))]}))}))}function _(t){return t.filter((function(t){return t.type===CSSRule.FONT_FACE_RULE})).filter((function(t){return M(t.style.getPropertyValue("src"))}))}function G(t,r){return e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:if(null==t.ownerDocument)throw new Error("Provided element is not within a Document");return[4,$(o(t.ownerDocument.styleSheets),r)];case 1:return[2,_(e.sent())]}}))}))}function J(t,r){return e(this,void 0,void 0,(function(){var e;return n(this,(function(n){switch(n.label){case 0:return[4,G(t,r)];case 1:return e=n.sent(),[4,Promise.all(e.map((function(t){var e=t.parentStyleSheet?t.parentStyleSheet.href:null;return H(t.cssText,e,r)})))];case 2:return[2,n.sent().join("\n")]}}))}))}function Q(t,r){return e(this,void 0,void 0,(function(){var e,i,o,u,c;return n(this,(function(n){switch(n.label){case 0:return null==r.fontEmbedCSS?[3,1]:(i=r.fontEmbedCSS,[3,5]);case 1:return r.skipFonts?(o=null,[3,4]):[3,2];case 2:return[4,J(t,r)];case 3:o=n.sent(),n.label=4;case 4:i=o,n.label=5;case 5:return(e=i)&&(u=document.createElement("style"),c=document.createTextNode(e),u.appendChild(c),t.firstChild?t.insertBefore(u,t.firstChild):t.appendChild(u)),[2]}}))}))}function X(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){var e,i,o,u;return n(this,(function(n){switch(n.label){case 0:return e=c(t,r),i=e.width,o=e.height,[4,L(t,r,!0)];case 1:return[4,Q(u=n.sent(),r)];case 2:return n.sent(),[4,U(u,r)];case 3:return n.sent(),function(t,e){var n=t.style;e.backgroundColor&&(n.backgroundColor=e.backgroundColor),e.width&&(n.width="".concat(e.width,"px")),e.height&&(n.height="".concat(e.height,"px"));var r=e.style;null!=r&&Object.keys(r).forEach((function(t){n[t]=r[t]}))}(u,r),[4,h(u,i,o)];case 4:return[2,n.sent()]}}))}))}function K(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){var e,i,o,u,s,f,h,d,v;return n(this,(function(n){switch(n.label){case 0:return e=c(t,r),i=e.width,o=e.height,[4,X(t,r)];case 1:return[4,l(n.sent())];case 2:return u=n.sent(),s=document.createElement("canvas"),f=s.getContext("2d"),h=r.pixelRatio||function(){var t,e;try{e=process}catch(t){}var n=e&&e.env?e.env.devicePixelRatio:null;return n&&(t=parseInt(n,10),Number.isNaN(t)&&(t=1)),t||window.devicePixelRatio||1}(),d=r.canvasWidth||i,v=r.canvasHeight||o,s.width=d*h,s.height=v*h,r.skipAutoScale||function(t){(t.width>a||t.height>a)&&(t.width>a&&t.height>a?t.width>t.height?(t.height*=a/t.width,t.width=a):(t.width*=a/t.height,t.height=a):t.width>a?(t.height*=a/t.width,t.width=a):(t.width*=a/t.height,t.height=a))}(s),s.style.width="".concat(d),s.style.height="".concat(v),r.backgroundColor&&(f.fillStyle=r.backgroundColor,f.fillRect(0,0,s.width,s.height)),f.drawImage(u,0,0,s.width,s.height),[2,s]}}))}))}t.getFontEmbedCSS=function(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){return n(this,(function(e){return[2,J(t,r)]}))}))},t.toBlob=function(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return[4,K(t,r)];case 1:return[4,s(e.sent())];case 2:return[2,e.sent()]}}))}))},t.toCanvas=K,t.toJpeg=function(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return[4,K(t,r)];case 1:return[2,e.sent().toDataURL("image/jpeg",r.quality||1)]}}))}))},t.toPixelData=function(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){var e,i,o,u;return n(this,(function(n){switch(n.label){case 0:return e=c(t,r),i=e.width,o=e.height,[4,K(t,r)];case 1:return u=n.sent(),[2,u.getContext("2d").getImageData(0,0,i,o).data]}}))}))},t.toPng=function(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return[4,K(t,r)];case 1:return[2,e.sent().toDataURL()]}}))}))},t.toSvg=X}));
+//# sourceMappingURL=html-to-image.js.map
+
+</script>
 <style>
+  /* =========================================================================
+     STYLES — grouped by area (search a label to jump):
+       background/starfield · header · date pickers · team strip · grid ·
+       bar add/delete anim · per-bar tools · editable name+code · status bars ·
+       bullets (+ nesting levels) · +project · footer · capture mode · focus/motion
+     ========================================================================= */
   body{
     --ink:#1e293b; --ink-soft:#64748b; --line:#e9edf3;
     margin:0; min-height:100vh; color:var(--ink); overflow-x:hidden;
@@ -194,10 +205,36 @@
   .wp-bullets{list-style:none;margin:0;padding:2px 12px 16px}
   .wp-bullet{display:flex;align-items:flex-start;gap:9px;padding:4px 6px;border-radius:10px;transition:background .16s}
   .wp-bullet:hover{background:var(--tint)}
+  .wp-bullet.lv1{padding-left:24px}
+  .wp-bullet.lv2{padding-left:44px}
   .wp-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:10px;flex-shrink:0;
     border:0;padding:0;cursor:pointer;transition:transform .15s,box-shadow .15s}
   .wp-dot:hover{transform:scale(1.9);box-shadow:0 0 0 4px var(--tint)}
   .wp-dot:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  /* voice-to-text: mic button inside the bullet input */
+  .wp-input-mic{position:relative;display:inline-flex;align-items:center;width:100%}
+  .wp-input-mic input{flex:1;padding-right:30px}
+  .wp-mic{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:24px;height:24px;border:0;background:none;
+    color:#94a3b8;cursor:pointer;display:grid;place-items:center;padding:0;border-radius:6px;line-height:0;transition:color .15s,background .15s}
+  .wp-mic:hover{color:var(--accent);background:var(--tint)}
+  .wp-mic.is-listening{color:#dc2626}
+  .wp-mic.is-listening:hover{background:#fef2f2}
+  .wp-wave{display:inline-flex;align-items:center;gap:2px;height:15px}
+  .wp-wave i{width:2.5px;height:5px;background:currentColor;border-radius:2px;animation:wp-wavebar .9s ease-in-out infinite}
+  .wp-wave i:nth-child(1){animation-delay:0s}
+  .wp-wave i:nth-child(2){animation-delay:.15s}
+  .wp-wave i:nth-child(3){animation-delay:.3s}
+  .wp-wave i:nth-child(4){animation-delay:.45s}
+  .wp-wave i:nth-child(5){animation-delay:.6s}
+  @keyframes wp-wavebar{0%,100%{height:4px}50%{height:14px}}
+  body.wp-capture .wp-mic{display:none}
+  .wp-dot.lv1{width:7px;height:7px;border-radius:1.5px;background:transparent;border:1.6px solid var(--accent);margin-top:9px}
+  .wp-dot.lv1:hover{transform:scale(1.6);box-shadow:none;background:var(--tint)}
+  /* level 2 marker: arrow chevron */
+  .wp-dot.lv2{width:9px;height:9px;background:transparent;border-radius:0;margin-top:8px;position:relative}
+  .wp-dot.lv2::before{content:"";position:absolute;left:1px;top:1px;width:4px;height:4px;border-right:1.7px solid var(--accent);border-bottom:1.7px solid var(--accent);transform:rotate(-45deg)}
+  .wp-dot.lv2:hover{transform:scale(1.5);box-shadow:none}
+  .wp-bullet.lv1 .wp-bullet-edit,.wp-bullet.lv2 .wp-bullet-edit{color:#475569}
   /* strike-through then collapse-away when a task is clicked done */
   .wp-bullet-text .wp-strike-line{position:relative}
   .wp-bullet-text .wp-strike-line::after{content:"";position:absolute;left:0;top:52%;height:2px;width:0;background:currentColor;border-radius:2px}
@@ -509,40 +546,122 @@ function avatarEl(initials, size, faded){
   return host;
 }
 
+/* ===================== voice-to-text (isolated; Web Speech API, Pages-safe) =====================
+   Self-contained: feature-detects SpeechRecognition. If unavailable, attachMic() renders nothing,
+   so nothing else is affected. It ONLY writes the transcript into the given input (no auto-submit);
+   the existing edit/parse logic on Enter is untouched. Opt-in via editable({voice:true}) — bullets only. */
+var SpeechRec = (typeof window !== "undefined") && (window.SpeechRecognition || window.webkitSpeechRecognition);
+
+/* attach a mic button next to an <input>; returns the button element (or null if unsupported) */
+function attachMic(inp){
+  if (!SpeechRec) return null;                       // graceful: no mic on unsupported browsers
+  const btn = h("button", { type:"button", class:"wp-mic", title:"Dictate (click to speak, click again to stop)", "aria-label":"Dictate" });
+  btn.innerHTML = micIcon();
+  let rec = null, listening = false, finalText = "";
+
+  const stop = () => {
+    listening = false;
+    btn.classList.remove("is-listening");
+    btn.innerHTML = micIcon();
+    if (rec){ try { rec.stop(); } catch(_){} rec = null; }
+  };
+  const start = () => {
+    let r;
+    try { r = new SpeechRec(); } catch(_) { return; }
+    rec = r;
+    r.lang = "en-US";
+    r.interimResults = true;      // show words as they come
+    r.continuous = true;          // keep going until the user stops
+    finalText = inp.value ? (inp.value + (/\s$/.test(inp.value) ? "" : " ")) : "";
+    r.onresult = (ev) => {
+      let interim = "";
+      for (let i = ev.resultIndex; i < ev.results.length; i++){
+        const chunk = ev.results[i][0].transcript;
+        if (ev.results[i].isFinal) finalText += chunk;
+        else interim += chunk;
+      }
+      inp.value = (finalText + interim);              // transcript inserted as-is; user edits/enters later
+    };
+    r.onerror = () => stop();
+    r.onend = () => { if (listening) stop(); };        // if it ends on its own, reset the button
+    try { r.start(); listening = true; btn.classList.add("is-listening"); btn.innerHTML = waveIcon(); }
+    catch(_){ stop(); }
+  };
+
+  // mousedown+preventDefault so clicking the mic does NOT blur/commit the input
+  btn.addEventListener("mousedown", (e) => { e.preventDefault(); });
+  btn.addEventListener("click", (e) => {
+    e.preventDefault(); e.stopPropagation();
+    if (listening) { stop(); } else { start(); }
+    inp.focus();
+  });
+  // if the field is torn down (re-render/commit), make sure recognition is stopped
+  btn._wpStop = stop;
+  return btn;
+}
+function micIcon(){
+  return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>';
+}
+function waveIcon(){
+  // animated soundwave bars (animation via CSS)
+  return '<span class="wp-wave"><i></i><i></i><i></i><i></i><i></i></span>';
+}
+
 /* ===================== inline editable ===================== */
 function editable(o){
   const value = o.value || "";
   function makeInput(){
     const inp = h("input", { class:o.inputCls||"", value:value, maxlength:o.max||200, placeholder:o.placeholder||"" });
     let done = false;
+    let mic = null;
+    const cleanupMic = () => { if (mic && mic._wpStop) { try { mic._wpStop(); } catch(_){} } };
     const commit = () => {
       if (done) return; done = true;
+      cleanupMic();
       inp.removeEventListener("blur", commit);     // stop the pending blur from firing a second onSave during re-render
       const v = o.allowEmpty ? inp.value.trim() : (inp.value.trim() || value);
       o.onSave(v);
     };
     inp.addEventListener("keydown", e => {
       if(e.key==="Enter"){ e.preventDefault(); commit(); }
-      else if(e.key==="Escape"){ done = true; inp.removeEventListener("blur", commit); render(); }
+      else if(e.key==="Escape"){ done = true; cleanupMic(); inp.removeEventListener("blur", commit); render(); }
+      else if(e.key==="Tab" && typeof o.onIndent === "function"){
+        e.preventDefault();                       // don't move focus / leave the field
+        done = true; cleanupMic(); inp.removeEventListener("blur", commit);
+        const v = o.allowEmpty ? inp.value.trim() : (inp.value.trim() || value);
+        o.onIndent(e.shiftKey ? -1 : 1, v);        // outdent on Shift+Tab, indent otherwise
+      }
     });
     inp.addEventListener("blur", commit);
+    if (o.voice){                                  // opt-in mic (bullets only) — wraps input + mic together
+      mic = attachMic(inp);
+      if (mic){
+        const wrap = h("span", { class:"wp-input-mic" }, inp, mic);
+        wrap._wpInput = inp;                       // so focus/select can reach the inner input
+        return wrap;
+      }
+    }
     return inp;
   }
+  /* returns the inner <input> whether makeInput gave back a bare input or a mic-wrapper */
+  function inputOf(node){ return (node && node._wpInput) ? node._wpInput : node; }
   if (o.startEditing){
-    const inp = makeInput();
+    const node = makeInput();
+    const inp = inputOf(node);
     setTimeout(()=>{ inp.focus(); try{ inp.select(); }catch(_){} }, 0);
-    return inp;
+    return node;
   }
   const empty = !value;
   const btn = h("button", { class:(o.cls||"")+(empty?" is-empty":""), title:"Click to edit" },
     h("span", {}, empty && o.placeholder ? o.placeholder : value),
     o.pen === false ? null : pen()
   );
-  btn.addEventListener("click", () => { const inp = makeInput(); btn.replaceWith(inp); inp.focus(); try{ inp.select(); }catch(_){} });
+  btn.addEventListener("click", () => { const node = makeInput(); btn.replaceWith(node); const inp = inputOf(node); inp.focus(); try{ inp.select(); }catch(_){} });
   return btn;
 }
 
 /* ===================== state + persistence ===================== */
+/* ---------- one-time load & migration (runs once at startup) ---------- */
 let board = defaultBoard();
 let newBulletId = null, newBarNameId = null;
 let justAddedBarId = null;
@@ -551,6 +670,17 @@ let dragState = null;
 let firstRender = true;
 
 try { const s = localStorage.getItem(KEY); if (s){ const d = JSON.parse(s); if (d && Array.isArray(d.bars)) board = Object.assign(defaultBoard(), d); } } catch(_){}
+
+/* backward-compat: ensure every task has a numeric indent level 0..2 (old files won't have it) */
+function normalizeLevels(b){
+  if (!b || !Array.isArray(b.bars)) return b;
+  b.bars.forEach(bar => (bar.tasks||[]).forEach(t => {
+    var lv = parseInt(t.level, 10);
+    t.level = (isNaN(lv) ? 0 : Math.max(0, Math.min(2, lv)));
+  }));
+  return b;
+}
+normalizeLevels(board);
 
 /* one-time cleanup: any legacy "AK" icon in saved data becomes "AM" */
 var didMigrate = (function migrateInitials(){
@@ -572,11 +702,12 @@ seedKnown(board);
   board.teamToday.sort();
 })();
 
+/* ---------- core: the single state-update path (every mutation goes through setBoard) ---------- */
 function persist(){ try { localStorage.setItem(KEY, JSON.stringify(board)); } catch(_){} }
 if (didMigrate) { try { persist(); } catch(_){} }   // write the cleaned (AK->AM) board back immediately
 function setBoard(updater){ board = (typeof updater==="function") ? updater(board) : updater; seedKnown(board); persist(); render(); }
 
-/* mutations */
+/* ---------- mutations: BAR-level (name, code, add, delete) ---------- */
 function setField(f,v){ setBoard(b => Object.assign({}, b, {[f]:v})); }
 function renameBar(id,name){ setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id===id?Object.assign({},x,{name}):x)})); }
 function recodeBar(id,code){ setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id===id?Object.assign({},x,{code}):x)})); }
@@ -608,6 +739,7 @@ function animateDeleteBar(sec, id){
 }
 function addProject(){ const id = uid(); newBarNameId = id; justAddedBarId = id; setBoard(b => Object.assign({}, b, {bars:b.bars.concat([{id, name:"", code:"", tasks:[]}])})); }
 
+/* ---------- text parsing: shared "text - AB/CD" owner extraction (used by typing, paste, voice) ---------- */
 /* --- shared: pull "text - AB/CD" trailing owners (2-letter initials only) --- */
 function parseTrailingOwners(str){
   let text = (str || "").trim();
@@ -640,9 +772,53 @@ function addTasksBulk(barId, items){
   const newTasks = items.map(it => ({ id: uid(), text: it.text, owners: (it.owners||[]).slice() }));
   setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id!==barId?x:Object.assign({},x,{tasks:x.tasks.concat(newTasks)}))}));
 }
+/* ---------- mutations: BULLET-level (add, edit, delete-cascade, indent, move) + owners + armed-state ---------- */
 function setArmed(who){ armedPerson = (armedPerson === who) ? null : who; render(); }
 function disarm(){ if(armedPerson){ armedPerson = null; render(); } }
-function deleteBullet(barId,taskId){ setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id!==barId?x:Object.assign({},x,{tasks:x.tasks.filter(t=>t.id!==taskId)}))})); }
+function deleteBullet(barId,taskId){
+  setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>{
+    if (x.id!==barId) return x;
+    const arr = x.tasks;
+    const i = arr.findIndex(t=>t.id===taskId);
+    if (i<0) return x;
+    const lv = arr[i].level || 0;
+    // remove this item + the contiguous run of DEEPER-level items that follow it (its children)
+    let end = i + 1;
+    while (end < arr.length && (arr[end].level || 0) > lv) end++;
+    const next = arr.slice(0, i).concat(arr.slice(end));
+    return Object.assign({}, x, {tasks:next});
+  })}));
+}
+function setBulletLevel(barId, taskId, dir){
+  setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>{
+    if (x.id!==barId) return x;
+    return Object.assign({}, x, {tasks:x.tasks.map(t=>{
+      if (t.id!==taskId) return t;
+      const lv = Math.max(0, Math.min(2, (t.level||0) + dir));
+      return Object.assign({}, t, {level:lv});
+    })});
+  })}));
+}
+/* Tab/Shift+Tab while editing: save text, change indent, and keep this bullet in edit mode */
+function indentBullet(barId, taskId, dir, text){
+  if (text && !text.trim()){ deleteBullet(barId, taskId); return; }
+  newBulletId = taskId;                       // keep focus in this bullet after re-render
+  setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>{
+    if (x.id!==barId) return x;
+    return Object.assign({}, x, {tasks:x.tasks.map(t=>{
+      if (t.id!==taskId) return t;
+      const lv = Math.max(0, Math.min(2, (t.level||0) + dir));
+      let owners = t.owners.slice();
+      let newText = t.text;
+      if (typeof text === "string"){
+        const p = parseTrailingOwners(text);   // still parse "- AS/AF" if present
+        newText = p.text || text.trim() || t.text;
+        p.owners.forEach(o => { if (owners.indexOf(o) < 0) owners.push(o); });
+      }
+      return Object.assign({}, t, {level:lv, text:newText, owners:owners});
+    })});
+  })}));
+}
 function editBullet(barId,taskId,text){
   if(!text.trim()){ deleteBullet(barId,taskId); return; }
   const p = parseTrailingOwners(text);                 // typed "task - AS/AF" -> text + owner icons
@@ -654,7 +830,7 @@ function editBullet(barId,taskId,text){
     return Object.assign({}, t, { text:newText, owners:owners });
   })}))}));
 }
-function addBullet(barId){ const id = uid(); newBulletId = id; setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id!==barId?x:Object.assign({},x,{tasks:x.tasks.concat([{id, text:"", owners:[]}])}))})); }
+function addBullet(barId){ const id = uid(); newBulletId = id; setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id!==barId?x:Object.assign({},x,{tasks:x.tasks.concat([{id, text:"", owners:[], level:0}])}))})); }
 function moveBullet(barId, taskId, dir){
   setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>{
     if (x.id!==barId) return x;
@@ -812,14 +988,17 @@ function strikeAndDelete(li, bar, task){
   setTimeout(finish, 700);                               // fallback if animationend doesn't fire
 }
 function buildBullet(bar, task){
-  const dot = h("button",{class:"wp-dot", title:"Click to complete & remove", "aria-label":"Complete and remove task"});
+  const lv = task.level || 0;
+  const dot = h("button",{class:"wp-dot lv"+lv, title:"Click to complete & remove", "aria-label":"Complete and remove task"});
   const up = h("button",{class:"wp-move wp-up", title:"Move up", "aria-label":"Move task up"}, ico("chevron",13));
   const down = h("button",{class:"wp-move wp-down", title:"Move down", "aria-label":"Move task down"}, ico("chevron",13));
-  const li = h("li",{class:"wp-bullet"},
+  const li = h("li",{class:"wp-bullet lv"+lv},
     dot,
     h("span",{class:"wp-bullet-text"},
       h("span",{class:"wp-strike-line"}, editable({
         value:task.text, onSave:t=>editBullet(bar.id,task.id,t), startEditing:task.id===newBulletId, pen:false,
+        onIndent:(dir,text)=>indentBullet(bar.id,task.id,dir,text),
+        voice:true,
         placeholder:"Type a task\u2026", cls:"wp-editable-dark wp-bullet-edit", inputCls:"wp-input-dark wp-bullet-input", max:200
       }))
     ),
@@ -976,6 +1155,7 @@ function buildSnapshot(){
       code: bar.code || "",
       tasks: (bar.tasks||[]).map((t, j) => ({
         label: LETTERS[j] || String(j+1),
+        level: t.level || 0,
         text: t.text,
         owners: (t.owners||[]).map(o => ({ initials: o, name: fullName(o) })),
         ownersText: (t.owners||[]).join("/")
@@ -1003,7 +1183,13 @@ function buildText(){
   s.workstreams.forEach(ws => {
     L.push(ws.number + ". " + ws.name + (ws.code ? " (" + ws.code + ")" : ""));
     ws.tasks.forEach(t => {
-      L.push("    " + t.label + ". " + t.text + (t.ownersText ? " \u2013 " + t.ownersText : ""));
+      const lv = t.level || 0;
+      const owners = t.ownersText ? " \u2013 " + t.ownersText : "";
+      if (lv === 0){
+        L.push("    " + t.label + ". " + t.text + owners);
+      } else {
+        L.push("        ".repeat(lv) + "- " + t.text + owners);   // indented sub-point
+      }
     });
     L.push("");
   });
@@ -1031,7 +1217,9 @@ function importJSONFile(file){
       const restored = (data && data.board && Array.isArray(data.board.bars)) ? data.board
                      : (data && Array.isArray(data.bars)) ? data : null;   // accept a snapshot or a raw board
       if (!restored) { alert("That file doesn't look like a saved workplan."); return; }
-      setBoard(Object.assign(defaultBoard(), restored));
+      const merged = Object.assign(defaultBoard(), restored);
+      normalizeLevels(merged);                 // old files won't have task.level -> default 0
+      setBoard(merged);
     } catch(e) { alert("Couldn't read that file: " + e.message); }
   };
   reader.readAsText(file);
