@@ -106,8 +106,9 @@
   .wp-avtip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#111827}
   .wp-avwrap:hover .wp-avtip{opacity:1;transform:translateX(-50%) translateY(0)}
   body.wp-capture .wp-avtip{display:none}
-  .wp-train-chip{display:inline-flex;align-items:center;gap:6px;background:#f8fafc;border:1px solid var(--line);border-radius:22px;padding:3px 10px 3px 3px;cursor:grab}
+  .wp-train-chip{display:inline-flex;align-items:center;gap:6px;background:#f8fafc;border:1px solid var(--line);border-radius:22px;padding:3px 10px 3px 4px}
   .wp-train-chip:active{cursor:grabbing}
+  .wp-train-icons{display:inline-flex;align-items:center;gap:3px}
   .wp-train-on{font-size:12px;font-weight:700;color:var(--ink-soft)}
   .wp-train-note-edit{background:none;border:0;font-family:inherit;font-size:12px;font-weight:700;color:var(--ink-soft);cursor:pointer;padding:1px 4px;border-radius:6px}
   .wp-train-note-edit:hover{background:#eef2f7}
@@ -306,7 +307,40 @@
     transition:background .15s,color .15s,border-color .15s,transform .12s}
   .wp-logbtn:hover{background:#eef2ff;color:#4f46e5;border-color:#c7d2fe;transform:translateY(-1px)}
 
-  /* capture mode: strip interactive chrome + effects for a clean export */
+  /* instructions sidebar */
+  .wp-help-btn{position:fixed;top:0;right:0;z-index:60;border:0;cursor:pointer;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:800;font-size:14px;letter-spacing:.03em;color:#ffffff;
+    background:#CC0000;
+    padding:15px 10px;border-radius:0 12px 12px 0;box-shadow:-6px 8px 22px -10px rgba(204,0,0,.7);
+    writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);
+    transition:transform .15s,box-shadow .15s,background .15s}
+  .wp-help-btn:hover{transform:rotate(180deg) translateY(-3px);background:#e00000;box-shadow:-10px 12px 26px -10px rgba(204,0,0,.85)}
+  .wp-help-btn:focus-visible{outline:3px solid #CC0000;outline-offset:2px}
+  .wp-help-overlay{position:fixed;inset:0;z-index:70;background:rgba(15,23,42,.45);
+    opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+  .wp-help-overlay.is-open{opacity:1;visibility:visible}
+  .wp-help-panel{position:fixed;top:0;right:0;height:100%;width:390px;max-width:88vw;z-index:80;
+    background:#ffffff;box-shadow:-14px 0 40px -12px rgba(15,23,42,.4);
+    transform:translateX(100%);transition:transform .3s cubic-bezier(.22,1,.36,1);
+    display:flex;flex-direction:column;font-family:Arial,Helvetica,sans-serif}
+  .wp-help-panel.is-open{transform:translateX(0)}
+  .wp-help-head{display:flex;align-items:center;justify-content:space-between;
+    padding:18px 20px;border-bottom:1px solid rgba(0,0,0,.06);flex-shrink:0;
+    background:#CC0000}
+  .wp-help-title{font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:20px;color:#ffffff}
+  .wp-help-close{border:0;background:rgba(255,255,255,.2);color:#ffffff;font-size:22px;line-height:1;
+    width:32px;height:32px;border-radius:8px;cursor:pointer;display:grid;place-items:center;font-family:Arial}
+  .wp-help-close:hover{background:rgba(255,255,255,.35)}
+  .wp-help-close:focus-visible{outline:2px solid #ffffff;outline-offset:2px}
+  .wp-help-list{margin:0;padding:18px 22px 30px 40px;overflow-y:auto;
+    font-family:Arial,Helvetica,sans-serif;color:#CC0000;font-size:14px;line-height:1.55}
+  .wp-help-list li{margin-bottom:14px}
+  .wp-help-list li::marker{font-weight:700}
+  .wp-help-list b{font-weight:700}
+  /* hidden in the exported PNG */
+  body.wp-capture .wp-help-btn,
+  body.wp-capture .wp-help-overlay,
+  body.wp-capture .wp-help-panel{display:none !important}
   body.wp-capture .wp-bar-tools,
   body.wp-capture .wp-avatar-x,
   body.wp-capture .wp-pen,
@@ -345,6 +379,35 @@
 <body class="wp-root">
   <div class="wp-bg" aria-hidden="true"><span class="wp-blob b1"></span><span class="wp-blob b2"></span><span class="wp-blob b3"></span><div class="wp-stars" id="wp-stars"></div></div>
   <div id="app"></div>
+
+  <!-- Instructions sidebar (static, independent of the app render) -->
+  <button id="wp-help-btn" class="wp-help-btn" type="button" aria-label="Open instructions">Instructions</button>
+  <div id="wp-help-overlay" class="wp-help-overlay" aria-hidden="true"></div>
+  <aside id="wp-help-panel" class="wp-help-panel" aria-hidden="true" role="dialog" aria-label="Instructions">
+    <div class="wp-help-head">
+      <span class="wp-help-title">Instructions</span>
+      <button id="wp-help-close" class="wp-help-close" type="button" aria-label="Close instructions">&times;</button>
+    </div>
+    <ol class="wp-help-list">
+      <li><b>Set the day:</b> Pick the day and month from the dropdowns and type the year up top. Want to change the greeting or the line under it? Just click on it and type.</li>
+      <li><b>Add a task:</b> Hover over a task bar, click the + that pops up at the top right, and start typing.</li>
+      <li><b>Assign people quickly:</b> Just add " - AS/AF" to the end of a task and those initials turn into name icons. Works whether you type it or paste it in.</li>
+      <li><b>Prefer dragging?</b> Grab a name icon from "Team today" and drop it onto a task. Or click a name icon, then click each task you want to tag with it. Hit "Done" or press Esc when you're finished.</li>
+      <li><b>Took someone off a task?</b> Hover over their icon on the task and click the little &times;.</li>
+      <li><b>Tick off a task:</b> Click the round dot on its left. It strikes through and vanishes.</li>
+      <li><b>Shuffle tasks around:</b> Hover over a task and use the up and down arrows on the right to move it up or down within the bar.</li>
+      <li><b>Break a task into sub-points:</b> While you're typing, press Tab to tuck it in as a sub-bullet, or Shift+Tab to pull it back out. You can nest up to two levels.</li>
+      <li><b>Talk instead of type:</b> Click into a task, hit the microphone on the right, and start speaking. Click it again to stop. Say "hyphen" for a dash and "slash" for a slash. Your words show up as you speak them, so tidy it up and press Enter.</li>
+      <li><b>Add or delete a project bar:</b> Hover near the bottom of the board and click "Add project" to start a new one. To remove a bar, hover over it and click the &times; at the top right twice (the second click confirms).</li>
+      <li><b>Rearrange the bars:</b> Drag a bar using its grip handle, or click its number and type where you want it. Everything else renumbers itself.</li>
+      <li><b>Flag who's away:</b> Drop a name icon onto the "On training / out" card. Click the little label next to them to jot down why, like "Sick" or "Vacation." Drag them back to "Team today" once they're around again.</li>
+      <li><b>Set the daily game:</b> Click "Fun game for the day" to rename it, then click the grey line underneath to drop in today's game link.</li>
+      <li><b>Change who's sharing:</b> Click the initials next to "Shared by" and pop in your own (just two letters).</li>
+      <li><b>Send it out as an image:</b> Click Export PNG to grab a picture of the board. In Outlook, paste it straight into the email body rather than dragging it in, and drop the game link in as text so people can still click it.</li>
+      <li><b>Save a day or bring one back:</b> Click Export JSON to save the day as a file and keep it as your record. Click Import to load a saved one back in, handy on another computer or when you want to revisit an old day.</li>
+      <li><b>No need to hit save:</b> Your board saves itself in this browser, so it'll be right where you left it next time. Just remember it only lives in this browser, so use Export JSON if you need it somewhere else.</li>
+    </ol>
+  </aside>
 
 <script>
 /* ===================== twilight starfield (live only) ===================== */
@@ -846,9 +909,23 @@ function addOwner(barId,taskId,who){ setBoard(b => Object.assign({}, b, {bars:b.
 function removeOwner(barId,taskId,who){ setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id!==barId?x:Object.assign({},x,{tasks:x.tasks.map(t=>t.id!==taskId?t:Object.assign({},t,{owners:t.owners.filter(o=>o!==who)}))}))})); }
 function addStatusPerson(sid,who){ setBoard(b => Object.assign({}, b, {statusBars:b.statusBars.map(s=>s.id!==sid?s:Object.assign({},s,{people:s.people.indexOf(who)>=0?s.people:s.people.concat([who])}))})); }
 function removeStatusPerson(sid,who){ setBoard(b => Object.assign({}, b, {statusBars:b.statusBars.map(s=>s.id!==sid?s:Object.assign({},s,{people:s.people.filter(o=>o!==who)}))})); }
-function moveToTraining(who){ setBoard(b => Object.assign({}, b, {teamToday:b.teamToday.filter(x=>x!==who), onTraining:b.onTraining.some(p=>p.who===who)?b.onTraining:b.onTraining.concat([{who,on:""}])})); }
 function moveToTeam(who){ setBoard(b => Object.assign({}, b, {onTraining:b.onTraining.filter(p=>p.who!==who), teamToday:b.teamToday.indexOf(who)>=0?b.teamToday:b.teamToday.concat([who]).sort()})); }
 function setTrainingNote(who,on){ setBoard(b => Object.assign({}, b, {onTraining:b.onTraining.map(p=>p.who===who?Object.assign({},p,{on}):p)})); }
+/* drop a person onto the card (blank note) or onto a specific status pill (that note) */
+function moveToTrainingWithNote(who, note){
+  setBoard(b => {
+    const exists = b.onTraining.some(p=>p.who===who);
+    const onTraining = exists
+      ? b.onTraining.map(p=>p.who===who?Object.assign({},p,{on:note||""}):p)   // already out: just set its note (joins that group)
+      : b.onTraining.concat([{who, on:note||""}]);
+    return Object.assign({}, b, { teamToday:b.teamToday.filter(x=>x!==who), onTraining });
+  });
+}
+/* editing a group's label moves EVERYONE currently in that group to the new note */
+function renameTrainingGroup(oldNote, newNote){
+  const o = (oldNote||"").toLowerCase();
+  setBoard(b => Object.assign({}, b, {onTraining:b.onTraining.map(p => ((p.on||"").toLowerCase()===o) ? Object.assign({},p,{on:newNote}) : p)}));
+}
 function reorderBar(draggedId,targetId,after){
   setBoard(b => {
     const arr = b.bars.slice();
@@ -881,10 +958,10 @@ function personSource(el, who, from){
   el.addEventListener("dragstart", e => { dragState={type:"person",who,from}; document.body.classList.add("wp-dragging"); e.dataTransfer.effectAllowed="copyMove"; e.dataTransfer.setData("text/plain",who); });
   el.addEventListener("dragend", () => { dragState=null; document.body.classList.remove("wp-dragging"); clearHighlights(); });
 }
-function personTarget(el, onDrop){
-  el.addEventListener("dragover", e => { if(dragState && dragState.type==="person"){ e.preventDefault(); e.dataTransfer.dropEffect = dragState.from==="team" ? "copy" : "move"; el.classList.add("wp-drop-ok"); } });
-  el.addEventListener("dragleave", () => el.classList.remove("wp-drop-ok"));
-  el.addEventListener("drop", e => { if(dragState && dragState.type==="person"){ e.preventDefault(); el.classList.remove("wp-drop-ok"); onDrop(dragState); } });
+function personTarget(el, onDrop, stopProp){
+  el.addEventListener("dragover", e => { if(dragState && dragState.type==="person"){ e.preventDefault(); if(stopProp) e.stopPropagation(); e.dataTransfer.dropEffect = dragState.from==="team" ? "copy" : "move"; el.classList.add("wp-drop-ok"); } });
+  el.addEventListener("dragleave", e => { if(!el.contains(e.relatedTarget)) el.classList.remove("wp-drop-ok"); });   // ignore leaving into a child
+  el.addEventListener("drop", e => { if(dragState && dragState.type==="person"){ e.preventDefault(); if(stopProp) e.stopPropagation(); el.classList.remove("wp-drop-ok"); onDrop(dragState); } });
 }
 function barReorderTarget(el, bar){
   el.addEventListener("dragover", e => {
@@ -941,15 +1018,47 @@ function teamChip(who){
   chip.addEventListener("click", (e)=>{ e.preventDefault(); setArmed(who); });
   return chip;
 }
-function trainChip(p){
-  const av = avatarEl(p.who,22,true);
-  const label = editable({
-    value:p.on, onSave:v=>setTrainingNote(p.who,v), allowEmpty:true, pen:false, placeholder:"+",
-    cls:"wp-train-note-edit", inputCls:"wp-train-note-input", max:20
+/* build the on-training area as grouped pills:
+   - people sharing a (non-empty) note -> one pill with multiple icons + a shared editable label
+   - people with a blank note -> their own pill (so distinct notes can still be added)
+   returns an array of pill elements */
+function buildTrainingPills(){
+  const list = board.onTraining || [];
+  const groups = [];                 // { key, note, people:[who] }  (note-bearing groups, first-seen order)
+  const singles = [];                // people with empty note (each its own pill)
+  list.forEach(p => {
+    const note = (p.on || "").trim();
+    if (!note){ singles.push(p.who); return; }
+    const key = note.toLowerCase();
+    let g = groups.find(x => x.key === key);
+    if (!g){ g = { key, note, people:[] }; groups.push(g); }
+    g.people.push(p.who);
   });
-  const chip = h("span",{class:"wp-train-chip", title:"Drag the icon back to Team today \u00B7 click the label to edit"}, av, label);
-  personSource(av, p.who, "training");   // drag the avatar (so clicking the label edits instead of dragging)
-  return chip;
+  const pills = [];
+  // grouped pills (visual only — the whole card is the drop zone; grouping is automatic by matching label)
+  groups.forEach(g => {
+    const icons = h("span",{class:"wp-train-icons"}, g.people.map(w => ownerChip(w, () => moveToTeam(w))));
+    const label = editable({
+      value:g.note, onSave:v=>renameTrainingGroup(g.note, v), allowEmpty:true, pen:false, placeholder:"+",
+      cls:"wp-train-note-edit", inputCls:"wp-train-note-input", max:20
+    });
+    const pill = h("span",{class:"wp-train-chip", title:"Same status shares a pill \u00B7 click the label to rename the group \u00B7 hover an icon and click \u00d7 to send back"}, icons, label);
+    g.people.forEach((w, i) => { const chip = icons.children[i]; const av = chip.querySelector(".wp-avatar"); if (av) personSource(av, w, "training"); });
+    pills.push(pill);
+  });
+  // individual (no-note) pills
+  singles.forEach(w => {
+    const av = avatarEl(w,22,true);
+    const label = editable({
+      value:"", onSave:v=>setTrainingNote(w, v), allowEmpty:true, pen:false, placeholder:"+",
+      cls:"wp-train-note-edit", inputCls:"wp-train-note-input", max:20
+    });
+    const pill = h("span",{class:"wp-train-chip", title:"Drag the icon back to Team today \u00B7 click + to add a status"},
+      h("span",{class:"wp-train-icons"}, ownerChip(w, () => moveToTeam(w))), label);
+    const chipAv = pill.querySelector(".wp-avatar"); if (chipAv) personSource(chipAv, w, "training");
+    pills.push(pill);
+  });
+  return pills;
 }
 function buildTeamStrip(){
   const teamBlock = h("div",{class:"wp-strip-block"},
@@ -960,9 +1069,9 @@ function buildTeamStrip(){
 
   const trainBlock = h("div",{class:"wp-strip-block wp-training"},
     h("div",{class:"wp-strip-label"},"On training / out"),
-    h("div",{class:"wp-roster"}, board.onTraining.map(trainChip))
+    h("div",{class:"wp-roster"}, buildTrainingPills())
   );
-  personTarget(trainBlock, ds => { if(ds.from==="team") moveToTraining(ds.who); });
+  personTarget(trainBlock, ds => { if(ds.from==="team") moveToTrainingWithNote(ds.who, ""); });
 
   return h("section",{class:"wp-team-strip"}, teamBlock, trainBlock);
 }
@@ -1301,6 +1410,23 @@ if (!window.__wpArmKey){
   document.addEventListener("keydown", e => { if (e.key === "Escape") disarm(); });
 }
 render();
+
+/* ===================== instructions sidebar (isolated toggle) ===================== */
+(function initHelpSidebar(){
+  try {
+    const btn = document.getElementById("wp-help-btn");
+    const panel = document.getElementById("wp-help-panel");
+    const overlay = document.getElementById("wp-help-overlay");
+    const closeBtn = document.getElementById("wp-help-close");
+    if (!btn || !panel || !overlay) return;
+    const open = () => { panel.classList.add("is-open"); overlay.classList.add("is-open"); panel.setAttribute("aria-hidden","false"); overlay.setAttribute("aria-hidden","false"); };
+    const close = () => { panel.classList.remove("is-open"); overlay.classList.remove("is-open"); panel.setAttribute("aria-hidden","true"); overlay.setAttribute("aria-hidden","true"); };
+    btn.addEventListener("click", open);
+    if (closeBtn) closeBtn.addEventListener("click", close);
+    overlay.addEventListener("click", close);
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && panel.classList.contains("is-open")) close(); });
+  } catch(_) { /* sidebar is decorative; never let it break the app */ }
+})();
 </script>
 </body>
 </html>
