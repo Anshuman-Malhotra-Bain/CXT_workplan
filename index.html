@@ -22,10 +22,10 @@
     --ink:#1e293b; --ink-soft:#64748b; --line:#e9edf3;
     margin:0; min-height:100vh; color:var(--ink); overflow-x:hidden;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:linear-gradient(135deg,#eceef2 0%,#f3f4f6 30%,#e9ebf0 55%,#f3f4f6 80%,#edeff3 100%);
-    background-size:260% 260%;
+    background:linear-gradient(120deg,#dfe3ea 0%,#f5f6f8 20%,#e3e6ed 42%,#f3eef0 62%,#e6e3ea 82%,#f4f5f7 100%);
+    background-size:320% 320%;
     background-attachment:fixed;
-    animation:wp-bgwave 16s ease-in-out infinite;
+    animation:wp-bgwave 11s ease-in-out infinite;
   }
   @keyframes wp-bgwave{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   *{box-sizing:border-box}
@@ -106,7 +106,8 @@
   .wp-avtip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#111827}
   .wp-avwrap:hover .wp-avtip{opacity:1;transform:translateX(-50%) translateY(0)}
   body.wp-capture .wp-avtip{display:none}
-  .wp-train-chip{display:inline-flex;align-items:center;gap:6px;background:#f8fafc;border:1px solid var(--line);border-radius:22px;padding:3px 10px 3px 4px}
+  .wp-train-chip{display:inline-flex;align-items:center;gap:6px;background:#f8fafc;border:1px solid var(--line);border-radius:18px;padding:4px 12px 4px 5px;flex-wrap:wrap;max-width:100%}
+  .wp-train-note-edit{white-space:normal;word-break:break-word;text-align:left}
   .wp-train-chip:active{cursor:grabbing}
   .wp-train-icons{display:inline-flex;align-items:center;gap:3px}
   .wp-train-on{font-size:12px;font-weight:700;color:var(--ink-soft)}
@@ -830,13 +831,25 @@ normalizeLevels(board);
 
 /* one-time cleanup: any legacy "AK" icon in saved data becomes "AM" */
 var didMigrate = (function migrateInitials(){
-  const swap = { AK: "AM" };
+  const swap = { AK: "AM" };          // rename legacy initials
+  const drop = { BB: true };          // retired people to purge from any old saved board
   let changed = false;
-  const fix = a => (a||[]).map(x => { if (swap[x]) { changed = true; return swap[x]; } return x; });
+  const fix = a => (a||[]).filter(x => { if(drop[x]){ changed=true; return false; } return true; })
+                         .map(x => { if (swap[x]) { changed = true; return swap[x]; } return x; });
   (board.bars||[]).forEach(bar => (bar.tasks||[]).forEach(t => { t.owners = fix(t.owners); }));
   (board.statusBars||[]).forEach(s => { s.people = fix(s.people); });
   board.teamToday = Array.from(new Set(fix(board.teamToday)));
-  (board.onTraining||[]).forEach(p => { if (swap[p.who]) { p.who = swap[p.who]; changed = true; } });
+  board.onTraining = (board.onTraining||[]).filter(p => { if(drop[p.who]){ changed=true; return false; } return true; });
+  board.onTraining.forEach(p => { if (swap[p.who]) { p.who = swap[p.who]; changed = true; } });
+  // also scrub retired people from the Bainee Roster overrides
+  if (board.roster){
+    Object.keys(drop).forEach(k => {
+      if (board.roster.names && board.roster.names[k]){ delete board.roster.names[k]; changed=true; }
+      if (board.roster.colors && board.roster.colors[k]){ delete board.roster.colors[k]; changed=true; }
+      if (board.roster.added){ const n=board.roster.added.length; board.roster.added=board.roster.added.filter(p=>!drop[p.initials]); if(board.roster.added.length!==n) changed=true; }
+      if (board.roster.removed){ board.roster.removed=board.roster.removed.filter(x=>!drop[x]); }
+    });
+  }
   return changed;
 })();
 
