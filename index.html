@@ -22,15 +22,15 @@
     --ink:#1e293b; --ink-soft:#64748b; --line:#e9edf3;
     margin:0; min-height:100vh; color:var(--ink); overflow-x:hidden;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:linear-gradient(178deg,#1a1b4b 0%,#3b2a63 34%,#7c3f6d 60%,#c86b6b 82%,#f0a97a 100%);
-    background-size:220% 220%;
+    background:linear-gradient(135deg,#eceef2 0%,#f3f4f6 30%,#e9ebf0 55%,#f3f4f6 80%,#edeff3 100%);
+    background-size:260% 260%;
     background-attachment:fixed;
-    animation:wp-dawn 22s ease-in-out infinite;
+    animation:wp-bgwave 16s ease-in-out infinite;
   }
-  @keyframes wp-dawn{0%{background-position:0% 0%}50%{background-position:100% 100%}100%{background-position:0% 0%}}
+  @keyframes wp-bgwave{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   *{box-sizing:border-box}
   .wp-ic{display:inline-flex;line-height:0}
-  .wp-bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+  .wp-bg{display:none}
   .wp-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.4}
   .wp-blob.b1{width:460px;height:460px;background:#3d3a8c;top:-150px;left:-100px}
   .wp-blob.b2{width:420px;height:420px;background:#e08a6a;top:220px;right:-140px}
@@ -49,8 +49,8 @@
 
   /* header */
   .wp-header{position:relative;overflow:hidden;color:#fff;border-radius:26px;padding:30px 34px;
-    background:linear-gradient(120deg,#4f46e5 0%,#2563eb 40%,#06b6d4 78%,#14b8a6 112%);
-    box-shadow:0 22px 55px -18px rgba(37,99,235,.55)}
+    background:linear-gradient(115deg,#FF1F1F 0%,#CC0000 70%);
+    box-shadow:0 22px 55px -18px rgba(204,0,0,.5)}
   .wp-shine{position:absolute;top:0;left:-60%;width:60%;height:100%;
     background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);animation:wp-shine 6.5s ease-in-out infinite}
   @keyframes wp-shine{0%{left:-60%}55%{left:130%}100%{left:130%}}
@@ -61,8 +61,8 @@
   .wp-editable:hover .wp-pen{opacity:.9}
   .wp-editable-input{font-family:inherit;color:#fff;background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.55);border-radius:10px;padding:5px 11px;outline:none}
   .wp-sz-date{font-size:15px;font-weight:600;opacity:.92;margin-top:4px}
-  .wp-sz-greet{font-size:26px;font-weight:800;line-height:1.25;letter-spacing:-.01em;margin-top:12px}
-  .wp-sz-sub{font-size:15px;font-weight:600;opacity:.95;margin-top:14px}
+  .wp-sz-greet{display:flex;width:fit-content;max-width:100%;font-size:26px;font-weight:800;line-height:1.25;letter-spacing:-.01em;margin-top:12px}
+  .wp-sz-sub{display:flex;width:fit-content;max-width:100%;font-size:15px;font-weight:600;opacity:.95;margin-top:14px}
   input.wp-sz-date{width:auto;min-width:250px}
   input.wp-sz-greet,input.wp-sz-sub{width:100%;max-width:620px}
 
@@ -125,7 +125,7 @@
   .wp-card.wp-drop-after{box-shadow:0 3px 0 0 #6366f1, 0 12px 34px -22px rgba(15,23,42,.4) !important}
 
   /* grid */
-  .wp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:16px;align-items:start}
+  .wp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:16px;align-items:stretch}
   .wp-card{position:relative;background:#fff;border:1px solid var(--line);border-top:0;border-radius:20px;overflow:hidden;
     box-shadow:0 12px 34px -22px rgba(15,23,42,.4);transition:box-shadow .25s,transform .25s}
   .wp-card::before{content:"";display:block;height:4px;background:var(--accent)}
@@ -273,33 +273,33 @@
 
   /* footer */
   .wp-footer{margin-top:26px;display:flex;flex-wrap:wrap;gap:16px;align-items:stretch}
-  .wp-game{flex:1;min-width:300px;display:flex;align-items:center;gap:14px;color:var(--ink);
-    background:linear-gradient(120deg,#fff 0%,#f5f3ff 100%);border:1px solid var(--line);border-radius:18px;padding:16px 18px;
-    box-shadow:0 10px 28px -20px rgba(15,23,42,.4)}
+  .wp-game{flex:1;min-width:300px;display:flex;align-items:center;gap:14px;color:#fff;
+    background:linear-gradient(115deg,#FF1F1F 0%,#CC0000 70%);border:0;border-radius:18px;padding:16px 18px;
+    box-shadow:0 10px 28px -16px rgba(204,0,0,.5)}
   .wp-game-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex-shrink:0;color:#fff;
-    background:linear-gradient(135deg,#4f46e5 0%,#2563eb 40%,#06b6d4 78%,#14b8a6 112%)}
+    background:rgba(255,255,255,.18)}
   .wp-game-icon svg{stroke:#fff}
   .wp-game-body{flex:1;min-width:0}
-  .wp-game-title{font-size:15px;font-weight:800;margin-bottom:2px}
-  .wp-game-title-edit{font-size:15px;font-weight:800;color:var(--ink);padding:1px 4px}
+  .wp-game-title{font-size:15px;font-weight:800;margin-bottom:2px;color:#fff}
+  .wp-game-title-edit{font-size:15px;font-weight:800;color:#fff;padding:1px 4px}
   .wp-game-title-input{font-size:15px;font-weight:800;width:100%;max-width:320px}
   .wp-game-linkrow{display:flex;align-items:center;gap:6px;margin-top:2px}
-  .wp-game-link{font-size:13px;color:var(--ink-soft);font-weight:600;text-decoration:underline;word-break:break-all}
-  .wp-game-link:hover{color:#4f46e5}
-  .wp-game-link-edit{opacity:0;border:0;background:none;color:var(--ink-soft);cursor:pointer;padding:2px;border-radius:6px;line-height:0;flex-shrink:0;transition:opacity .18s,background .15s}
-  .wp-game:hover .wp-game-link-edit{opacity:.7}
-  .wp-game-link-edit:hover{background:#eef2f7}
-  .wp-game-sub-edit{font-size:13px;color:var(--ink-soft);font-weight:500;padding:1px 4px;width:100%}
+  .wp-game-link{font-size:13px;color:rgba(255,255,255,.92);font-weight:600;text-decoration:underline;word-break:break-all}
+  .wp-game-link:hover{color:#fff}
+  .wp-game-link-edit{opacity:0;border:0;background:none;color:rgba(255,255,255,.8);cursor:pointer;padding:2px;border-radius:6px;line-height:0;flex-shrink:0;transition:opacity .18s,background .15s}
+  .wp-game:hover .wp-game-link-edit{opacity:.9}
+  .wp-game-link-edit:hover{background:rgba(255,255,255,.18)}
+  .wp-game-sub-edit{font-size:13px;color:rgba(255,255,255,.92);font-weight:500;padding:1px 4px;width:100%}
   .wp-game-sub-edit span{white-space:normal}
-  .wp-game-sub-edit.is-empty span{color:#94a3b8}
+  .wp-game-sub-edit.is-empty span{color:rgba(255,255,255,.7)}
   .wp-game-sub-input{font-size:13px;font-weight:500;width:100%;max-width:420px}
   .wp-footer-actions{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:10px;padding:0 4px}
   .wp-signoff{font-size:14px;color:#ffffff}
   .wp-signoff strong{color:#ffffff}
   .wp-export{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:22px;padding:11px 20px;cursor:pointer;font-family:inherit;
-    font-size:14px;font-weight:800;color:#fff;background:linear-gradient(135deg,#4f46e5 0%,#2563eb 40%,#06b6d4 78%,#14b8a6 112%);box-shadow:0 10px 24px -10px rgba(37,99,235,.6);
+    font-size:14px;font-weight:800;color:#fff;background:linear-gradient(115deg,#FF1F1F 0%,#CC0000 70%);box-shadow:0 10px 24px -10px rgba(204,0,0,.6);
     transition:transform .15s,box-shadow .15s}
-  .wp-export:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(37,99,235,.6)}
+  .wp-export:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(204,0,0,.6)}
   .wp-export:disabled{opacity:.6;cursor:default;transform:none}
   .wp-logrow{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
   .wp-logbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;color:#475569;
@@ -337,9 +337,53 @@
   .wp-help-list li{margin-bottom:14px}
   .wp-help-list li::marker{font-weight:700}
   .wp-help-list b{font-weight:700}
+  .wp-help-list li.wp-help-sec{list-style:none;margin-left:-22px;margin-top:20px;padding-top:14px;border-top:2px solid #f0e3e3;font-size:15px}
+  /* back button in panel heads */
+  .wp-help-back{border:0;background:rgba(255,255,255,.2);color:#fff;font-size:18px;line-height:1;width:30px;height:30px;border-radius:8px;cursor:pointer;display:grid;place-items:center;font-family:Arial;margin-right:6px}
+  .wp-help-back:hover{background:rgba(255,255,255,.35)}
+  /* sidebar chooser panel */
+  .wp-side-panel{position:fixed;top:0;right:0;height:100%;width:330px;max-width:88vw;z-index:80;background:#fff;
+    box-shadow:-14px 0 40px -12px rgba(15,23,42,.4);transform:translateX(100%);transition:transform .3s cubic-bezier(.22,1,.36,1);
+    display:flex;flex-direction:column;font-family:Arial,Helvetica,sans-serif}
+  .wp-side-panel.is-open{transform:translateX(0)}
+  .wp-side-body{padding:18px 18px;display:flex;flex-direction:column;gap:12px}
+  .wp-side-choice{display:flex;flex-direction:column;gap:3px;text-align:left;border:1px solid #f0d3d3;background:#fff;border-radius:12px;
+    padding:16px 18px;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s,transform .12s}
+  .wp-side-choice:hover{background:#fff5f5;border-color:#CC0000;transform:translateX(-2px)}
+  .wp-side-choice-t{font-size:16px;font-weight:800;color:#CC0000}
+  .wp-side-choice-s{font-size:12.5px;color:#64748b}
+  /* Bainee Roster panel */
+  .wp-roster-body{flex:1;overflow-y:auto;padding:14px 16px}
+  .wp-roster-row{display:flex;align-items:center;gap:10px;padding:8px 8px;border-radius:10px;transition:background .15s}
+  .wp-roster-row:hover{background:#f8fafc}
+  .wp-roster-row.is-editing{background:#fff5f5}
+  .wp-roster-name{flex:1;min-width:0;font-size:14px;font-weight:600;color:#1e293b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .wp-roster-name small{color:#94a3b8;font-weight:700;margin-left:6px}
+  .wp-roster-x{opacity:0;border:0;background:none;color:#cbd5e1;cursor:pointer;padding:3px;border-radius:6px;line-height:0;transition:opacity .15s,color .15s,background .15s;flex-shrink:0}
+  .wp-roster-row:hover .wp-roster-x{opacity:1}
+  .wp-roster-x:hover{color:#dc2626;background:#fef2f2}
+  .wp-roster-editor{padding:8px 8px 12px;display:flex;flex-direction:column;gap:8px}
+  .wp-roster-editor input[type=text]{font-family:inherit;font-size:14px;padding:7px 10px;border:1.5px solid #cbd5e1;border-radius:8px;outline:none;width:100%;box-sizing:border-box}
+  .wp-roster-editor input[type=text]:focus{border-color:#CC0000}
+  .wp-swatches{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .wp-swatch{width:24px;height:24px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #e2e8f0;cursor:pointer;padding:0}
+  .wp-swatch.is-sel{box-shadow:0 0 0 2px #CC0000}
+  .wp-swatch-custom{width:26px;height:26px;border:1px solid #cbd5e1;border-radius:50%;padding:0;cursor:pointer;background:none}
+  .wp-roster-editor-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:2px}
+  .wp-roster-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;font-family:inherit;font-size:12.5px;font-weight:700;color:#475569;cursor:pointer}
+  .wp-roster-btn.primary{background:#CC0000;color:#fff;border-color:#CC0000}
+  .wp-roster-btn:hover{filter:brightness(.97)}
+  .wp-roster-actions{display:flex;gap:8px;flex-wrap:wrap;padding:10px 8px 4px;border-top:1px solid #f0e3e3;margin-top:8px}
+  .wp-roster-add{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1.5px dashed #CC0000;background:#fff;color:#CC0000;border-radius:10px;padding:9px 12px;font-family:inherit;font-weight:700;font-size:13px;cursor:pointer}
+  .wp-roster-add:hover{background:#fff5f5}
+  .wp-roster-restore{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:#fff;color:#475569;border-radius:10px;padding:9px 12px;font-family:inherit;font-weight:700;font-size:12.5px;cursor:pointer}
+  .wp-roster-restore:hover{background:#f1f5f9}
+  .wp-roster-note{padding:10px 16px 16px;font-size:11.5px;color:#94a3b8;font-family:Arial;text-align:right}
   /* hidden in the exported PNG */
   body.wp-capture .wp-help-btn,
   body.wp-capture .wp-help-overlay,
+  body.wp-capture .wp-side-panel,
+  body.wp-capture .wp-roster-panel,
   body.wp-capture .wp-help-panel{display:none !important}
   body.wp-capture .wp-bar-tools,
   body.wp-capture .wp-avatar-x,
@@ -354,7 +398,7 @@
   body.wp-capture{animation:none}
   body.wp-capture .wp-bg{display:none}
   body.wp-capture .wp-container{
-    background:linear-gradient(165deg,#dbe6ff 0%,#e7ddff 26%,#f6ddef 52%,#ffe4d6 76%,#ffe9c9 100%);
+    background:#f3f4f6;
     padding:26px !important;border-radius:26px}
 
   /* focus + motion */
@@ -380,11 +424,26 @@
   <div class="wp-bg" aria-hidden="true"><span class="wp-blob b1"></span><span class="wp-blob b2"></span><span class="wp-blob b3"></span><div class="wp-stars" id="wp-stars"></div></div>
   <div id="app"></div>
 
-  <!-- Instructions sidebar (static, independent of the app render) -->
-  <button id="wp-help-btn" class="wp-help-btn" type="button" aria-label="Open instructions">Instructions</button>
+  <!-- Sidebar launcher + chooser -->
+  <button id="wp-help-btn" class="wp-help-btn" type="button" aria-label="Open sidebar">Sidebar</button>
   <div id="wp-help-overlay" class="wp-help-overlay" aria-hidden="true"></div>
+
+  <!-- chooser panel: pick Instructions or Bainee Roster -->
+  <aside id="wp-side-panel" class="wp-side-panel" aria-hidden="true" role="dialog" aria-label="Sidebar">
+    <div class="wp-help-head">
+      <span class="wp-help-title">Sidebar</span>
+      <button id="wp-side-close" class="wp-help-close" type="button" aria-label="Close sidebar">&times;</button>
+    </div>
+    <div class="wp-side-body">
+      <button id="wp-open-instructions" class="wp-side-choice" type="button"><span class="wp-side-choice-t">Instructions</span><span class="wp-side-choice-s">How to use the workplan</span></button>
+      <button id="wp-open-roster" class="wp-side-choice" type="button"><span class="wp-side-choice-t">Bainee Roster</span><span class="wp-side-choice-s">Edit, add or remove name icons</span></button>
+    </div>
+  </aside>
+
+  <!-- Instructions panel -->
   <aside id="wp-help-panel" class="wp-help-panel" aria-hidden="true" role="dialog" aria-label="Instructions">
     <div class="wp-help-head">
+      <button id="wp-help-back" class="wp-help-back" type="button" aria-label="Back to sidebar">&larr;</button>
       <span class="wp-help-title">Instructions</span>
       <button id="wp-help-close" class="wp-help-close" type="button" aria-label="Close instructions">&times;</button>
     </div>
@@ -406,7 +465,23 @@
       <li><b>Send it out as an image:</b> Click Export PNG to grab a picture of the board. In Outlook, paste it straight into the email body rather than dragging it in, and drop the game link in as text so people can still click it.</li>
       <li><b>Save a day or bring one back:</b> Click Export JSON to save the day as a file and keep it as your record. Click Import to load a saved one back in, handy on another computer or when you want to revisit an old day.</li>
       <li><b>No need to hit save:</b> Your board saves itself in this browser, so it'll be right where you left it next time. Just remember it only lives in this browser, so use Export JSON if you need it somewhere else.</li>
+      <li class="wp-help-sec"><b>Bainee Roster (name icons):</b></li>
+      <li><b>Open it:</b> Click the Sidebar tab, then "Bainee Roster" to manage everyone's name icons.</li>
+      <li><b>Edit someone:</b> Click a name icon to change their full name (shown on hover) or their colour. Their initials stay the same.</li>
+      <li><b>Add or remove:</b> Use "+ Add person" for a new 2-letter icon, or remove one (it's cleared from every card and task). "Restore primary names" brings back any removed original teammates.</li>
+      <li><b>Sharing:</b> Roster changes live in this browser, but they're saved into your JSON export &mdash; so import carries them to another machine.</li>
     </ol>
+  </aside>
+
+  <!-- Bainee Roster panel (people grid built in JS) -->
+  <aside id="wp-roster-panel" class="wp-help-panel wp-roster-panel" aria-hidden="true" role="dialog" aria-label="Bainee Roster">
+    <div class="wp-help-head">
+      <button id="wp-roster-back" class="wp-help-back" type="button" aria-label="Back to sidebar">&larr;</button>
+      <span class="wp-help-title">Bainee Roster</span>
+      <button id="wp-roster-close" class="wp-help-close" type="button" aria-label="Close roster">&times;</button>
+    </div>
+    <div id="wp-roster-body" class="wp-roster-body"></div>
+    <div class="wp-roster-note">* Changes are saved in this browser and included in JSON exports.</div>
   </aside>
 
 <script>
@@ -470,7 +545,6 @@ const DEFAULT_BARS = [
   ]},
   { id:"ws4", name:"KSA Loyalty Survey", code:"B5QF", tasks:[
     {id:"ws4-a", text:"Continue loyalty-programs research for Financial Services", owners:["AF","NM","SR"]},
-    {id:"ws4-b", text:"Continue the retail storyline and prepare the features table", owners:["BB"]},
     {id:"ws4-c", text:"Continue dashboard updates (w/ Basma) and incorporate the FS section", owners:["SR"]},
     {id:"ws4-d", text:"Start the one-pager for the call with Cyril", owners:["AS"]},
     {id:"ws4-e", text:"Align on next steps for KSA (reach out to Dom & Cyril)", owners:["AS","HW"]},
@@ -496,10 +570,12 @@ const STATUS_INIT = [
 ];
 function computeRoster(){
   const s = new Set();
+  Object.keys(BASE_NAMES).forEach(o => s.add(o));                // every base roster member (even with no task yet)
   DEFAULT_BARS.forEach(b => b.tasks.forEach(t => t.owners.forEach(o => s.add(o))));
   STATUS_INIT.forEach(sb => sb.people.forEach(o => s.add(o)));   // include everyone on MyCX / SA
   return Array.from(s).sort();
 }
+
 function clone(x){ return JSON.parse(JSON.stringify(x)); }
 function defaultBoard(){
   return {
@@ -510,39 +586,46 @@ function defaultBoard(){
     gameTitle: "Fun game for the day",
     gameText: "https://www.nytimes.com/games/wordle",
     sharedBy: "AH",
+    roster: { names:{}, colors:{}, added:[], removed:[] },   // Bainee Roster overrides (on top of the hardcoded base)
     bars: clone(DEFAULT_BARS),
   };
 }
 
 /* ===================== avatar colours ===================== */
-const NAMES = {
+const BASE_NAMES = {
   AF:"Aryan", AR:"Arpit", AG:"Anand", AH:"Anshuman", AM:"Abhijoy", AP:"Apoorva",
-  AS:"Amrinderpreet", BB:"Bhumika", HW:"Himani", NM:"Nishita", RD:"Riddhii",
+  AS:"Amrinderpreet", AA:"Anish", HW:"Himani", NM:"Nishita", RD:"Riddhii",
   SK:"Samyak", SM:"Shaurya", SP:"Swastik", SR:"Saurabh", SS:"Satpreet", SW:"Sheetal", VP:"Vyapak"
 };
-function fullName(i){ return NAMES[i] || i; }   // unknown initials (e.g. XZ) just show the initials
 const AVATAR_COLORS = ["#6366F1","#EC4899","#14B8A6","#F59E0B","#8B5CF6","#10B981","#EF4444","#0EA5E9","#F97316","#A855F7","#06B6D4","#84CC16","#E11D48","#3B82F6","#D946EF","#22C55E"];
-const AVATAR_OVERRIDES = { AH: BAIN_RED, NM: "#0EA5E9" };
-const UNKNOWN_COLOR = "#111111";                 // black icon for people not on the board
+const AVATAR_OVERRIDES = { AH: BAIN_RED, NM: "#0EA5E9", AA: "#C79400" };   // base (default) colour overrides for specific people
+const UNKNOWN_COLOR = "#111111";                             // black icon for people not on the roster at all
 
-/* everyone the board already knows about (seeded from defaults, kept in sync on load) */
-const KNOWN_INITIALS = new Set();
-function seedKnown(b){
-  KNOWN_INITIALS.clear();
-  computeRoster().forEach(p => KNOWN_INITIALS.add(p));      // default roster (task owners + MyCX/SA)
-  if (b){
-    (b.teamToday||[]).forEach(p => KNOWN_INITIALS.add(p));
-    (b.onTraining||[]).forEach(p => KNOWN_INITIALS.add(p.who));
-    (b.statusBars||[]).forEach(s => (s.people||[]).forEach(p => KNOWN_INITIALS.add(p)));
-    (b.bars||[]).forEach(bar => (bar.tasks||[]).forEach(t => (t.owners||[]).forEach(p => KNOWN_INITIALS.add(p))));
-  }
+/* ---- roster override helpers (Bainee Roster) — read board.roster on top of the hardcoded base ---- */
+function rosterOverrides(){ return (typeof board !== "undefined" && board && board.roster) ? board.roster : { names:{}, colors:{}, added:[], removed:[] }; }
+function addedPerson(i){ const a=rosterOverrides().added||[]; return a.find(p=>p.initials===i) || null; }
+function isRemoved(i){ return (rosterOverrides().removed||[]).indexOf(i) >= 0; }
+function isKnownPerson(i){ return (!!BASE_NAMES[i] || !!addedPerson(i)); }   // a real roster member (base or added)
+/* base (pre-override) name/colour for a person */
+function baseNameOf(i){ const ap=addedPerson(i); if(ap) return ap.name || i; return BASE_NAMES[i] || i; }
+function baseColorOf(i){
+  const ap=addedPerson(i); if(ap) return ap.color || UNKNOWN_COLOR;
+  if (AVATAR_OVERRIDES[i]) return AVATAR_OVERRIDES[i];
+  if (BASE_NAMES[i]) return AVATAR_COLORS[hashStr(i)%AVATAR_COLORS.length];
+  return UNKNOWN_COLOR;
 }
 function hashStr(s){ let h=0; for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return h; }
-function avatarColor(i){
-  if (AVATAR_OVERRIDES[i]) return AVATAR_OVERRIDES[i];
-  if (!NAMES[i]) return UNKNOWN_COLOR;                        // not a known team member -> black icon
-  return AVATAR_COLORS[hashStr(i)%AVATAR_COLORS.length];
+function fullName(i){ const o=rosterOverrides(); if(o.names && o.names[i]) return o.names[i]; return baseNameOf(i); }
+function avatarColor(i){ const o=rosterOverrides(); if(o.colors && o.colors[i]) return o.colors[i]; return baseColorOf(i); }
+/* the effective set of people to show in the roster panel: base (minus removed) + added */
+function effectivePeople(){
+  const out = [];
+  Object.keys(BASE_NAMES).forEach(i => { if(!isRemoved(i)) out.push({ initials:i, added:false }); });
+  (rosterOverrides().added||[]).forEach(p => { if(!isRemoved(p.initials)) out.push({ initials:p.initials, added:true }); });
+  out.sort((a,b)=>a.initials.localeCompare(b.initials));
+  return out;
 }
+function removedPrimaries(){ return (rosterOverrides().removed||[]).filter(i => BASE_NAMES[i]); }
 function textOn(hex){ const c=hex.replace("#",""); const r=parseInt(c.slice(0,2),16),g=parseInt(c.slice(2,4),16),b=parseInt(c.slice(4,6),16); return (0.299*r+0.587*g+0.114*b)/255>0.62?"#1a1a1a":"#ffffff"; }
 function rgba(hex,a){ const c=hex.replace("#",""); const r=parseInt(c.slice(0,2),16),g=parseInt(c.slice(2,4),16),b=parseInt(c.slice(4,6),16); return "rgba("+r+","+g+","+b+","+a+")"; }
 const uid = () => "b"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
@@ -757,8 +840,6 @@ var didMigrate = (function migrateInitials(){
   return changed;
 })();
 
-seedKnown(board);
-
 /* make sure every known name icon is present in Team today (unless already moved to On training) */
 (function ensureRoster(){
   computeRoster().forEach(p => { if (board.teamToday.indexOf(p) < 0 && !board.onTraining.some(o => o.who === p)) board.teamToday.push(p); });
@@ -768,10 +849,58 @@ seedKnown(board);
 /* ---------- core: the single state-update path (every mutation goes through setBoard) ---------- */
 function persist(){ try { localStorage.setItem(KEY, JSON.stringify(board)); } catch(_){} }
 if (didMigrate) { try { persist(); } catch(_){} }   // write the cleaned (AK->AM) board back immediately
-function setBoard(updater){ board = (typeof updater==="function") ? updater(board) : updater; seedKnown(board); persist(); render(); }
+function setBoard(updater){ board = (typeof updater==="function") ? updater(board) : updater; persist(); render(); }
 
 /* ---------- mutations: BAR-level (name, code, add, delete) ---------- */
 function setField(f,v){ setBoard(b => Object.assign({}, b, {[f]:v})); }
+
+/* ---------- Bainee Roster: people overrides (name/colour edits, add, remove, restore) ---------- */
+function ensureRosterObj(b){ if(!b.roster) b.roster={names:{},colors:{},added:[],removed:[]}; b.roster.names=b.roster.names||{}; b.roster.colors=b.roster.colors||{}; b.roster.added=b.roster.added||[]; b.roster.removed=b.roster.removed||[]; return b; }
+function rosterSetName(initials, name){
+  setBoard(b => { b=ensureRosterObj(Object.assign({},b,{roster:clone(b.roster||{})}));
+    const ap=(b.roster.added||[]).find(p=>p.initials===initials);
+    if(ap){ ap.name = name; } else { b.roster.names[initials] = name; }
+    return b; });
+}
+function rosterSetColor(initials, color){
+  setBoard(b => { b=ensureRosterObj(Object.assign({},b,{roster:clone(b.roster||{})}));
+    const ap=(b.roster.added||[]).find(p=>p.initials===initials);
+    if(ap){ ap.color = color; } else { b.roster.colors[initials] = color; }
+    return b; });
+}
+function rosterAddPerson(initials, name, color){
+  initials = (initials||"").toUpperCase();
+  if(!/^[A-Z]{2}$/.test(initials)){ alert("Initials must be exactly 2 letters."); return false; }
+  if(isKnownPerson(initials) && !isRemoved(initials)){ alert("Those initials (" + initials + ") are already taken."); return false; }
+  setBoard(b => { b=ensureRosterObj(Object.assign({},b,{roster:clone(b.roster||{})}));
+    b.roster.removed = (b.roster.removed||[]).filter(x=>x!==initials);   // un-remove if it was hidden
+    if(BASE_NAMES[initials]){ b.roster.names[initials]=name; b.roster.colors[initials]=color; }   // re-adding a base person = override its name/colour
+    else if(!(b.roster.added||[]).some(p=>p.initials===initials)){ b.roster.added.push({initials, name, color}); }
+    return b; });
+  return true;
+}
+/* remove a person everywhere: roster + team today + on-training + status cards + all task bars */
+function rosterRemovePerson(initials){
+  setBoard(b => {
+    b = ensureRosterObj(Object.assign({}, b, {roster:clone(b.roster||{})}));
+    const isBase = !!BASE_NAMES[initials];
+    if(isBase){ if(b.roster.removed.indexOf(initials)<0) b.roster.removed.push(initials); }
+    else { b.roster.added = (b.roster.added||[]).filter(p=>p.initials!==initials);
+           delete b.roster.names[initials]; delete b.roster.colors[initials]; }
+    // sweep from everywhere
+    b.teamToday = (b.teamToday||[]).filter(x=>x!==initials);
+    b.onTraining = (b.onTraining||[]).filter(p=>p.who!==initials);
+    b.statusBars = (b.statusBars||[]).map(s=>Object.assign({},s,{people:(s.people||[]).filter(x=>x!==initials)}));
+    b.bars = (b.bars||[]).map(bar=>Object.assign({},bar,{tasks:(bar.tasks||[]).map(t=>Object.assign({},t,{owners:(t.owners||[]).filter(x=>x!==initials)}))}));
+    return b;
+  });
+}
+/* restore all removed PRIMARY (base) people; leaves renames, colours and added people alone */
+function rosterRestorePrimaries(){
+  setBoard(b => { b=ensureRosterObj(Object.assign({},b,{roster:clone(b.roster||{})}));
+    b.roster.removed = (b.roster.removed||[]).filter(i => !BASE_NAMES[i]);   // keep only removed non-base (there shouldn't be any)
+    return b; });
+}
 function renameBar(id,name){ setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id===id?Object.assign({},x,{name}):x)})); }
 function recodeBar(id,code){ setBoard(b => Object.assign({}, b, {bars:b.bars.map(x=>x.id===id?Object.assign({},x,{code}):x)})); }
 function deleteBar(id){ setBoard(b => Object.assign({}, b, {bars:b.bars.filter(x=>x.id!==id)})); }
@@ -1315,7 +1444,7 @@ function downloadFile(filename, text, mime){
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1500);
 }
-function exportJSON(){ downloadFile("workplan-" + fileStamp() + ".json", JSON.stringify(buildSnapshot(), null, 2), "application/json"); }
+function exportJSON(){ downloadFile(dateStamp() + ".json", JSON.stringify(buildSnapshot(), null, 2), "application/json"); }
 function exportText(){ downloadFile("workplan-" + fileStamp() + ".txt", buildText(), "text/plain;charset=utf-8"); }
 
 function importJSONFile(file){
@@ -1335,6 +1464,7 @@ function importJSONFile(file){
 }
 
 /* ===================== export PNG ===================== */
+/* build the spray overlay (screen-only flourish); returns {layer, wearOff} */
 async function exportPNG(btn){
   const node = document.querySelector(".wp-container");
   if (!node) return;
@@ -1346,7 +1476,7 @@ async function exportPNG(btn){
     await new Promise(r => requestAnimationFrame(r));
     const dataUrl = await window.htmlToImage.toPng(node, {
       pixelRatio: 2,
-      backgroundColor: "#f3f0fb",
+      backgroundColor: "#f3f4f6",
       cacheBust: true,
       style: { margin: "0" }
     });
@@ -1411,20 +1541,115 @@ if (!window.__wpArmKey){
 }
 render();
 
-/* ===================== instructions sidebar (isolated toggle) ===================== */
-(function initHelpSidebar(){
+/* ===================== sidebar: chooser + Instructions + Bainee Roster ===================== */
+(function initSidebar(){
   try {
-    const btn = document.getElementById("wp-help-btn");
-    const panel = document.getElementById("wp-help-panel");
-    const overlay = document.getElementById("wp-help-overlay");
-    const closeBtn = document.getElementById("wp-help-close");
-    if (!btn || !panel || !overlay) return;
-    const open = () => { panel.classList.add("is-open"); overlay.classList.add("is-open"); panel.setAttribute("aria-hidden","false"); overlay.setAttribute("aria-hidden","false"); };
-    const close = () => { panel.classList.remove("is-open"); overlay.classList.remove("is-open"); panel.setAttribute("aria-hidden","true"); overlay.setAttribute("aria-hidden","true"); };
-    btn.addEventListener("click", open);
-    if (closeBtn) closeBtn.addEventListener("click", close);
-    overlay.addEventListener("click", close);
-    document.addEventListener("keydown", e => { if (e.key === "Escape" && panel.classList.contains("is-open")) close(); });
+    const launchBtn = document.getElementById("wp-help-btn");
+    const overlay   = document.getElementById("wp-help-overlay");
+    const sidePanel = document.getElementById("wp-side-panel");
+    const helpPanel = document.getElementById("wp-help-panel");
+    const rosterPanel = document.getElementById("wp-roster-panel");
+    if (!launchBtn || !overlay || !sidePanel) return;
+
+    const panels = [sidePanel, helpPanel, rosterPanel].filter(Boolean);
+    function showOverlay(on){ overlay.classList.toggle("is-open", on); overlay.setAttribute("aria-hidden", on?"false":"true"); }
+    function openPanel(p){ panels.forEach(x=>{ const on=(x===p); x.classList.toggle("is-open",on); x.setAttribute("aria-hidden",on?"false":"true"); }); showOverlay(true); if(p===rosterPanel) renderRoster(); }
+    function closeAll(){ panels.forEach(x=>{ x.classList.remove("is-open"); x.setAttribute("aria-hidden","true"); }); showOverlay(false); }
+    function anyOpen(){ return panels.some(x=>x.classList.contains("is-open")); }
+
+    launchBtn.addEventListener("click", ()=>openPanel(sidePanel));
+    overlay.addEventListener("click", closeAll);
+    document.addEventListener("keydown", e => { if(e.key==="Escape" && anyOpen()) closeAll(); });
+
+    const oi=document.getElementById("wp-open-instructions"); if(oi) oi.addEventListener("click", ()=>openPanel(helpPanel));
+    const orr=document.getElementById("wp-open-roster"); if(orr) orr.addEventListener("click", ()=>openPanel(rosterPanel));
+    const hb=document.getElementById("wp-help-back"); if(hb) hb.addEventListener("click", ()=>openPanel(sidePanel));
+    const rb=document.getElementById("wp-roster-back"); if(rb) rb.addEventListener("click", ()=>openPanel(sidePanel));
+    const hc=document.getElementById("wp-help-close"); if(hc) hc.addEventListener("click", closeAll);
+    const rc=document.getElementById("wp-roster-close"); if(rc) rc.addEventListener("click", closeAll);
+
+    /* ---- Bainee Roster panel rendering ---- */
+    let editingInitials = null;   // which person's editor is open
+    function renderRoster(){
+      const body = document.getElementById("wp-roster-body");
+      if (!body) return;
+      body.innerHTML = "";
+      effectivePeople().forEach(p => {
+        const i = p.initials;
+        const row = h("div",{class:"wp-roster-row" + (editingInitials===i?" is-editing":"")});
+        const av = avatarEl(i, 30);
+        const nameEl = h("span",{class:"wp-roster-name"}, fullName(i), h("small",{}, i));
+        const xBtn = h("button",{class:"wp-roster-x", title:"Remove "+fullName(i)}, ico("x",15));
+        xBtn.addEventListener("click",(e)=>{ e.stopPropagation(); if(confirm('Remove "'+fullName(i)+'" ('+i+')?\n\nThey will be cleared from Team today, On training, MyCX/SA and every task.')){ editingInitials=null; rosterRemovePerson(i); renderRoster(); } });
+        row.appendChild(av); row.appendChild(nameEl); row.appendChild(xBtn);
+        row.addEventListener("click", ()=>{ editingInitials = (editingInitials===i? null : i); renderRoster(); });
+        body.appendChild(row);
+        if (editingInitials===i) body.appendChild(buildEditor(i));
+      });
+      // actions row
+      const actions = h("div",{class:"wp-roster-actions"});
+      const addBtn = h("button",{class:"wp-roster-add"}, ico("plus",15,{stroke:2.5}), "Add person");
+      addBtn.addEventListener("click", ()=>{ editingInitials = "__new__"; renderRoster(); });
+      actions.appendChild(addBtn);
+      if (removedPrimaries().length){
+        const rst = h("button",{class:"wp-roster-restore"}, "Restore primary names");
+        rst.addEventListener("click", ()=>{ rosterRestorePrimaries(); renderRoster(); });
+        actions.appendChild(rst);
+      }
+      body.appendChild(actions);
+      if (editingInitials==="__new__") body.appendChild(buildAddEditor());
+    }
+    function swatchRow(current, onPick){
+      const wrap = h("div",{class:"wp-swatches"});
+      AVATAR_COLORS.forEach(c => {
+        const sw = h("button",{class:"wp-swatch"+(c.toLowerCase()===(current||"").toLowerCase()?" is-sel":""), style:{background:c}, title:c});
+        sw.addEventListener("click", ()=>onPick(c));
+        wrap.appendChild(sw);
+      });
+      const custom = h("input",{type:"color", class:"wp-swatch-custom", value:/^#[0-9a-f]{6}$/i.test(current)?current:"#6366F1", title:"Custom colour"});
+      custom.addEventListener("input", ()=>onPick(custom.value));
+      wrap.appendChild(custom);
+      return wrap;
+    }
+    function buildEditor(i){
+      const ed = h("div",{class:"wp-roster-editor"});
+      const nameInp = h("input",{type:"text", value:fullName(i), maxlength:40, placeholder:"Full name"});
+      const commitName = () => { const nm=nameInp.value.trim(); if(nm && nm!==fullName(i)) rosterSetName(i, nm); };
+      // picking a colour re-renders the editor, so save the typed name first (prevents losing an unsaved name)
+      const sw = swatchRow(avatarColor(i), (c)=>{ commitName(); rosterSetColor(i, c); editingInitials=i; renderRoster(); });
+      const done = h("button",{class:"wp-roster-btn primary"}, "Done");
+      const finish = () => { commitName(); editingInitials=null; renderRoster(); };
+      done.addEventListener("click", finish);
+      nameInp.addEventListener("keydown", e=>{ if(e.key==="Enter") finish(); });
+      ed.appendChild(h("label",{style:{fontSize:"12px",fontWeight:"700",color:"#64748b"}},"Name"));
+      ed.appendChild(nameInp);
+      ed.appendChild(h("label",{style:{fontSize:"12px",fontWeight:"700",color:"#64748b"}},"Colour"));
+      ed.appendChild(sw);
+      ed.appendChild(h("div",{class:"wp-roster-editor-btns"}, done));
+      return ed;
+    }
+    function buildAddEditor(){
+      const ed = h("div",{class:"wp-roster-editor"});
+      const iniInp = h("input",{type:"text", maxlength:2, placeholder:"Initials (2 letters)", style:{textTransform:"uppercase"}});
+      const nameInp = h("input",{type:"text", maxlength:40, placeholder:"Full name"});
+      let pendingColor = AVATAR_COLORS[0];
+      const sw = swatchRow(pendingColor, (c)=>{ pendingColor=c; sw.querySelectorAll(".wp-swatch").forEach(el=>el.classList.toggle("is-sel", el.title.toLowerCase()===c.toLowerCase())); });
+      const add = h("button",{class:"wp-roster-btn primary"}, "Add");
+      const cancel = h("button",{class:"wp-roster-btn"}, "Cancel");
+      add.addEventListener("click", ()=>{ const ini=iniInp.value.trim().toUpperCase(); const nm=nameInp.value.trim()||ini; if(rosterAddPerson(ini, nm, pendingColor)){ editingInitials=null; renderRoster(); } });
+      cancel.addEventListener("click", ()=>{ editingInitials=null; renderRoster(); });
+      ed.appendChild(h("label",{style:{fontSize:"12px",fontWeight:"700",color:"#64748b"}},"Initials (2 letters)"));
+      ed.appendChild(iniInp);
+      ed.appendChild(h("label",{style:{fontSize:"12px",fontWeight:"700",color:"#64748b"}},"Name"));
+      ed.appendChild(nameInp);
+      ed.appendChild(h("label",{style:{fontSize:"12px",fontWeight:"700",color:"#64748b"}},"Colour"));
+      ed.appendChild(sw);
+      ed.appendChild(h("div",{class:"wp-roster-editor-btns"}, cancel, add));
+      setTimeout(()=>{ try{ iniInp.focus(); }catch(_){} }, 0);
+      return ed;
+    }
+    // expose so setBoard-driven re-renders keep the roster panel fresh if it's open
+    window.__wpRenderRoster = () => { if (rosterPanel && rosterPanel.classList.contains("is-open")) renderRoster(); };
   } catch(_) { /* sidebar is decorative; never let it break the app */ }
 })();
 </script>
