@@ -401,6 +401,15 @@
   body.wp-capture .wp-container{
     background:#f3f4f6;
     padding:26px !important;border-radius:26px}
+  /* export fix: keep MyCX/SA + on-training name-icons on ONE horizontal row (html-to-image otherwise wraps them into vertical stacks) */
+  body.wp-capture .wp-status .wp-card-head{flex-wrap:nowrap;align-items:center}
+  body.wp-capture .wp-status-people{flex-wrap:nowrap;min-height:40px}
+  body.wp-capture .wp-train-chip{flex-wrap:nowrap}
+  body.wp-capture .wp-train-icons{flex-wrap:nowrap}
+  body.wp-capture .wp-train-note-edit{white-space:nowrap}
+  body.wp-capture .wp-status,
+  body.wp-capture .wp-train-chip,
+  body.wp-capture .wp-status-people{overflow:visible}
 
   /* focus + motion */
   .wp-editable:focus-visible,.wp-editable-dark:focus-visible,.wp-code-edit:focus-visible,.wp-num-badge:focus-visible,
